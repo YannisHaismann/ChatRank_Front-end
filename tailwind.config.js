@@ -19,6 +19,14 @@ module.exports = {
     minWidth: {
       28: "7rem",
     },
+    fontFamily: {
+      "maven-black": "Maven Black",
+      "maven-extra-bold": "Maven ExtraBold",
+      "maven-bold": "Maven Bold",
+      "maven-semi-bold": "Maven SemiBold",
+      "maven-medium": "Maven Medium",
+      "maven-regular": "Maven Regular",
+    },
   },
   plugins: [],
 };
