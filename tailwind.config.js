@@ -32,7 +32,9 @@ module.exports = {
       },
       fontSize: {
         "14px": "14px",
+        "10px": "10px",
         "8px": "8px",
+        "6px": "6px",
       },
       screens: {
         'tablet': { 'raw': '(orientation: portrait) and (min-height: 764px), (min-width: 1024px)' },
