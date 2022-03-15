@@ -4,10 +4,10 @@ import moreBtn from "@/assets/more-btn.svg";
 import ActionsOnViewer from "./ActionsOnViewer.vue"
 import $ from "jquery";
 import { useStore } from "vuex";
-
+import SearchViewer from "@/components/SearchViewer.vue";
 export default defineComponent({
   name: "list-viewer",
-  components: { ActionsOnViewer },
+  components: { ActionsOnViewer, SearchViewer },
   setup() {
     const boolActions = ref(false);
     const store = useStore();
@@ -50,9 +50,10 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="h-1/2" id="ListViewers">
+  <div class="h-1/2 flex-shrink-0 flex flex-col" id="ListViewers">
+    <search-viewer />
     <table
-      class="text-white border-2 border-darkBorder h-full w-full bg-darkC inline-block rounded-2xl mt-2 tablet:mt-5 font-maven-medium"
+      class="text-white block border-2 border-darkBorder h-full w-full bg-darkC rounded-2xl mt-2 tablet:mt-3 font-maven-medium"
     >
       <thead class="bg-darkB w-full text-10px tablet:text-14px h-5 tablet:h-11 block relative rounded-t-2xl">
         <tr class="absolute left-5 top-1/2 transform -translate-y-1/2">

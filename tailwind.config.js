@@ -31,6 +31,7 @@ module.exports = {
         "maven-regular": "Maven Regular",
       },
       fontSize: {
+        "20px": "20px",
         "14px": "14px",
         "12px": "12px",
         "10px": "10px",
