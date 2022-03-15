@@ -29,12 +29,12 @@ export default defineComponent({
     const navbarTl = gsap.timeline();
 
     const getDevice = () => {
-      if ($(document).width() < store.state.tablet) {
-        return "phone";
-      } else if ($(document).width() < store.state.desktop) {
+      if (($(document).height() > store.state.tablet && window.innerHeight > window.innerWidth || $(document).width() > store.state.desktop)) {
         return "tablet";
-      } else {
+      } else if($(document).width() > store.state.desktop) {
         return "desktop";
+      } else {
+        return "phone";
       }
     };
 
