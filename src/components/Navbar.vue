@@ -29,9 +29,9 @@ export default defineComponent({
     const navbarTl = gsap.timeline();
 
     const getDevice = () => {
-      if ($(document).width() < store.state.md) {
+      if ($(document).width() < store.state.tablet) {
         return "phone";
-      } else if ($(document).width() < store.state.lg) {
+      } else if ($(document).width() < store.state.desktop) {
         return "tablet";
       } else {
         return "desktop";
@@ -87,7 +87,7 @@ export default defineComponent({
   <div
     @mouseenter="openNavbar"
     @mouseleave="closeNavbar"
-    class="flex flex-shrink-0 justify-around flex-col w-20 md:w-28 h-full bg-darkB rounded-r-2xl overflow-hidden"
+    class="flex flex-shrink-0 justify-around flex-col w-20 tablet:w-28 h-full bg-darkB rounded-r-2xl overflow-hidden"
     id="navbar"
   >
     <img
@@ -97,7 +97,7 @@ export default defineComponent({
     />
     <div
       id="top-icons-list"
-      class="container flex flex-col gap-3 md:gap-12 w-full md:w-28 left-0 mb-4"
+      class="container flex flex-col gap-3 tablet:gap-12 w-full tablet:w-28 left-0 mb-4"
     >
       <icon-nav-bar
         :name="'Home'"
@@ -125,7 +125,7 @@ export default defineComponent({
     ></div>
     <div
       id="bottom-icons-list"
-      class="container md:w-28 flex flex-col gap-3 mt-4 md:gap-12 w-full left-0 bg-red"
+      class="container tablet:w-28 flex flex-col gap-3 mt-4 tablet:gap-12 w-full left-0 bg-red"
     >
       <icon-nav-bar
         :name="'My account'"

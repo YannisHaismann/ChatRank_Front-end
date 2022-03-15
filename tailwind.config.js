@@ -34,6 +34,10 @@ module.exports = {
         "14px": "14px",
         "8px": "8px",
       },
+      screens: {
+        'tablet': { 'raw': '(orientation: portrait) and (min-height: 764px), (min-width: 1024px)' },
+        desktop: "1024px",
+      },
     },
   },
   plugins: [],
