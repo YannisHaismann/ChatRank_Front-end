@@ -12,6 +12,9 @@ module.exports = {
         darkC: "#12131A",
         darkBorder: "#434F65",
         mainA: "#39C5E3",
+        secondText: '#C9D9DB',
+        loose: '#B64C4C',
+        win: '#4C83B6',
       },
       borderRadius: {
         "20px": "1.25rem",
@@ -42,6 +45,10 @@ module.exports = {
         'tablet': { 'raw': '(orientation: portrait) and (min-height: 764px), (min-width: 1024px)' },
         desktop: "1024px",
       },
+      minWidth: {
+        '0': '0',
+        '6rem': '6rem',
+       }
     },
   },
   plugins: [],

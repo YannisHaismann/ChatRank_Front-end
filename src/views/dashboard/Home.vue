@@ -21,7 +21,7 @@ export default defineComponent({
 <template>
   <div class="dashboard-home flex flex-auto h-full w-full bg-darkA">
     <navbar :activePage="'Home'" />
-    <div class="h-full w-full flex flex-col gap-6 p-10">
+    <div class="h-full w-full flex flex-col gap-6 p-10 overflow-y-auto">
       <list-viewers />
       <infos-viewer />
     </div>
