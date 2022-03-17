@@ -87,9 +87,9 @@ export default defineComponent({
               </div>
               <div class="text-white flex flex-col gap-3 w-48 font-maven-medium">
                 <p class="text-12px">Most played champions</p>
-                <champion name="Cassiopeia" img="Cassiopeia.png" win="44" loose="33" />
-                <champion name="Gragas" img="Gragas.png" win="5" loose="12" />
-                <champion name="Ahri" img="Ahri.png" win="1" loose="2" />
+                <champion name="Cassiopeia" img="Cassiopeia.png" win=44 loose=33 />
+                <champion name="Gragas" img="Gragas.png" win=5 loose=12 />
+                <champion name="Ahri" img="Ahri.png" win=1 loose=2 />
               </div>
             </div>
           </div>

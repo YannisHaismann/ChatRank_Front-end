@@ -1,21 +1,20 @@
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
+import $ from 'jquery';
 
 export default defineComponent({
   name: "Champion",
-  props: {
-    name: String,
-    img: String,
-    win: Number,
-    loose: Number,
-  },
+  props: [ 'name', 'img', 'win', 'loose'],
   setup(props) {
     const percentageCalculate = (win: number, loose: number) => {
-      console.log("On going");
+      let total = win + loose;
+      let final = Math.ceil((win / total) * 100);
+      $('#' + props.name + '-win').css('width', final + '%');
+      $('#' + props.name + '-loose').css('width', (100 - final) + '%');
     }
 
     onMounted(() => {
-      percentageCalculate(props.win!, props.loose!)
+      percentageCalculate(+props.win, +props.loose)
     });
     return { props };
   },
@@ -28,11 +27,11 @@ export default defineComponent({
       <img :src="require(`./../../assets/LOL/Champions/${img}`)" alt="">
       <div>
         <p class="text-lg">{{ name }}</p>
-        <div class="flex min-w-6rem h-4">
-          <div id="win" class="bg-win text-center rounded-l-2xl">
+        <div class="flex w-24 min-w-6rem h-4">
+          <div :id="name + '-win'" class="bg-win text-center rounded-l-2xl">
             <p class="text-12px">{{ win }}w</p>
           </div>
-          <div id="loose" class="bg-loose text-center rounded-r-2xl">
+          <div :id="name + '-loose'" class="bg-loose text-center rounded-r-2xl">
             <p class="text-12px">{{ loose }}l</p>
           </div>
         </div>
