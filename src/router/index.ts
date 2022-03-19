@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 import DashboardHome from "../views/dashboard/Home.vue";
+import DashboardStatistics from "../views/dashboard/Statistics.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/dashboard/home",
     name: "DashboardHome",
     component: DashboardHome,
+  },
+  {
+    path: "/dashboard/statistics",
+    name: "DashboardStatistics",
+    component: DashboardStatistics,
   },
 ];
 
