@@ -50,7 +50,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="h-1/2 flex-shrink-0 flex flex-col" id="ListViewers">
+  <div class="tablet:h-1/2 h-1/3 flex-shrink-0 flex flex-col" id="ListViewers">
     <search-viewer />
     <table
       class="text-white block border-2 border-darkBorder h-full w-full bg-darkC rounded-2xl mt-2 tablet:mt-3 font-maven-medium"

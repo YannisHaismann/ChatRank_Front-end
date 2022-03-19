@@ -22,9 +22,6 @@ module.exports = {
       zIndex: {
         n1: "-1",
       },
-      minWidth: {
-        28: "7rem",
-      },
       fontFamily: {
         "maven-black": "Maven Black",
         "maven-extra-bold": "Maven ExtraBold",
@@ -39,16 +36,26 @@ module.exports = {
         "12px": "12px",
         "10px": "10px",
         "8px": "8px",
+        "7px": "7px",
         "6px": "6px",
       },
       screens: {
         'tablet': { 'raw': '(orientation: portrait) and (min-height: 764px), (min-width: 1024px)' },
-        desktop: "1024px",
+        'desktop': "1024px",
+        'largeScreen': '1280px',
+        'veryLargeScreen': '1536px',
       },
       minWidth: {
         '0': '0',
         '6rem': '6rem',
-       }
+        28: "7rem",
+      },
+      maxHeight: {
+        '410px': '410px',
+      },
+      height: {
+        '27rem': '27rem'
+      }
     },
   },
   plugins: [],

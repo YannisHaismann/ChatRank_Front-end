@@ -23,16 +23,16 @@ export default defineComponent({
 
 <template>
   <div id="Champion">
-    <div class="flex gap-2">
-      <img :src="require(`./../../assets/LOL/Champions/${img}`)" alt="">
+    <div class="flex gap-1 tablet:gap-2">
+      <img class="w-5 h-5 tablet:w-10 tablet:h-10 largeScreen:w-12 veryLargeScreen:w-14 veryLargeScreen:h-14 xl:h-12" :src="require(`./../../assets/LOL/Champions/${img}`)" alt="">
       <div>
-        <p class="text-lg">{{ name }}</p>
-        <div class="flex w-24 min-w-6rem h-4">
+        <p class="text-10px tablet:test-base largeScreen:text-lg">{{ name }}</p>
+        <div class="flex h-2 w-10 tablet:w-16 largeScreen:min-w-6rem tablet:h-4">
           <div :id="name + '-win'" class="bg-win text-center rounded-l-2xl">
-            <p class="text-12px">{{ win }}w</p>
+            <p class="text-6px tablet:text-12px">{{ win }}w</p>
           </div>
           <div :id="name + '-loose'" class="bg-loose text-center rounded-r-2xl">
-            <p class="text-12px">{{ loose }}l</p>
+            <p class="text-6px tablet:text-12px">{{ loose }}l</p>
           </div>
         </div>
       </div>
