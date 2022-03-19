@@ -10,6 +10,10 @@
   padding: 0px;
 }
 
+*{
+  box-sizing: border-box!important;
+}
+
 @font-face {
   font-family: "Maven Black";
   src: url("./assets/fonts/MavenPro-Black.ttf");

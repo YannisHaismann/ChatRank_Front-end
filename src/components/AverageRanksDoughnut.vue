@@ -5,7 +5,7 @@ import $ from 'jquery';
 import Chart from 'chart.js/auto'
 
 export default defineComponent({
-  name: "ViewerWinPercentage",
+  name: "AverageRanksDoughnut",
   props: {
     loose: Number,
     win: Number,
@@ -25,30 +25,24 @@ export default defineComponent({
 
     onMounted(() => {
       const data = {
-        labels: [
-          'Win',
-          'Loose'
-        ],
+        labels: store.state.lolRanks,
         datasets: [{
-          data: [props.win, props.loose],
-          backgroundColor: [
-            store.state.winColor,
-            store.state.looseColor
-          ],
+          data: [10, 10, 10, 10, 10, 10, 10, 10, 10],
+          backgroundColor: store.state.lolRanksColor,
           borderWidth: 1,
         }]
       }
 
-     const ctx = $('#chart-winPercentage');
+     const ctx = $('#chart-averageRanksDoughnut');
      const myChart = new Chart(ctx, {
-       type: 'doughnut',
+       type: 'pie',
        data: data,
        options: {
           responsive: true,
           plugins:{
             legend: {
               display: true,
-              position: "bottom",
+              position: "right",
               labels: {
                 // fontColor: "#333",
                 // fontSize: 16
@@ -66,8 +60,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="veryLargeScreen:w-68 largeScreen:w-60 tablet:w-44 w-24" id="ViewerWinPercentage">
-    <canvas class="max-w-full max-h-full" id="chart-winPercentage">
+  <div class="w-full h-full" id="AverageRanksDoughnut">
+    <canvas class="max-w-full max-h-full" id="chart-averageRanksDoughnut">
 
     </canvas>
   </div>

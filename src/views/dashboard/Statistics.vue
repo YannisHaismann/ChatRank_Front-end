@@ -1,11 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Navbar from "@/components/Navbar.vue";
+import GameStatistics from "@/components/GameStatistics.vue";
 
 export default defineComponent({
   name: "DashboardHome",
   components: {
-    Navbar
+    Navbar,
+    GameStatistics
   },
   setup() {
     return {};
@@ -14,7 +16,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="dashboard-home flex flex-auto h-full w-full bg-darkA">
+  <div class="flex flex-auto h-full w-full overflow-hidden bg-darkA">
     <navbar :activePage="'Statistics'" />
+    <gameStatistics />
   </div>
 </template>
