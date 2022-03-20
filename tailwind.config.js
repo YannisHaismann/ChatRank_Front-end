@@ -1,6 +1,12 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
+    gradientColorStops: theme => ({
+      ...theme('colors'),
+      'bgDarkGreen': '#183027',
+      'bgMiddleColor': '#0F1B1E',
+      'bgLeftColor': '#0D0E1A',
+    }),
     extend: {
       inset: {
         twoPointfive: "2.5px",
