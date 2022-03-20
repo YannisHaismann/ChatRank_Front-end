@@ -13,9 +13,9 @@ export default defineComponent({
 </script>
 
 <template>
-<div class="w-full h-full mt-5 relative" id="StreamerVsViewers">
-  <p class="text-white font-maven-medium ml-3 text-18px">Streamer vs viewers</p>
-  <btn1 class="top-3 right-10" name="Ranked flex" />
+<div class="w-full h-full relative" id="StreamerVsViewers">
+  <p class="text-white font-maven-medium ml-3 text-12px tablet:text-18px">Streamer vs viewers</p>
+  <btn1 class="top-2.5 tablet:top-3 right-10" name="Ranked flex" />
   <div class="w-full h-full p-10 border-2 border-darkBorder rounded-2xl">
     <streamer-vs-viewers-charts />
   </div>

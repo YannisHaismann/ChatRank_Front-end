@@ -51,7 +51,7 @@ export default defineComponent({
 
 <template>
 <div class="w-full h-full relative" id="TopRanking">
-  <p class="text-white font-maven-medium ml-3 text-18px">Top ranking</p>
+  <p class="text-white font-maven-medium ml-3 text-12px tablet:text-18px">Top ranking</p>
   <btn1 class="top-3 right-10" name="Ranked flex" />
     <table
     class="text-white block border-2 border-darkBorder h-full w-full bg-darkC rounded-2xl font-maven-medium"
@@ -71,7 +71,7 @@ export default defineComponent({
         <td class="w-10 tablet:w-16">
           <img class="w-4 tablet:w-9" src="./../assets/pdp-template.png" />
         </td>
-        <td class="w-28 tablet:w-52 relative"><span class="absolute top-0.5">yesmanGaming</span><span class="absolute top-5 text-10px">pseudo twitch</span></td>
+        <td class="w-28 tablet:w-52 relative"><span class="absolute top-0.5">yesmanGaming</span><span class="absolute tablet:top-5 top-2.5 text-5px tablet:text-10px">pseudo twitch</span></td>
         <td class="w-28 tablet:w-52">Challenger 1340lp</td>
         <td class="w-28 tablet:w-52">Unranked</td>
       </tr>

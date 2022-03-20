@@ -32,6 +32,7 @@ module.exports = {
       },
       fontSize: {
         "20px": "20px",
+        "18px": "18px",
         "16px": "16px",
         "14px": "14px",
         "12px": "12px",
@@ -39,6 +40,7 @@ module.exports = {
         "8px": "8px",
         "7px": "7px",
         "6px": "6px",
+        "5px": "5px",
       },
       screens: {
         'tablet': { 'raw': '(orientation: portrait) and (min-height: 764px), (min-width: 1024px)' },

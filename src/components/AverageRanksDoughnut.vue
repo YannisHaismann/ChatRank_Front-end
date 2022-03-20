@@ -46,6 +46,9 @@ export default defineComponent({
               labels: {
                 // fontColor: "#333",
                 // fontSize: 16
+                font: {
+                  size: getDevice() === 'phone' ? 6 : 14,
+                },
                 boxWidth: getDevice() === 'phone' ? 16 : 48,
                 boxHeight: getDevice() === 'phone' ? 4 : 12
               }

@@ -14,9 +14,9 @@ export default defineComponent({
 
 <template>
 <div class="w-full h-full relative" id="AverageRanks">
-  <p class="text-white font-maven-medium ml-3 text-18px">Average ranks</p>
-  <btn1 class="top-3 right-10" name="Ranked flex" />
-  <div class="w-full h-full p-10 border-2 border-darkBorder rounded-2xl">
+  <p class="text-white font-maven-medium ml-3 text-12px tablet:text-18px">Average ranks</p>
+  <btn1 class="top-2.5 tablet:top-3 right-10" name="Ranked flex" />
+  <div class="w-full h-full p-2 tablet:p-10 border-2 border-darkBorder rounded-2xl">
     <averageRanksDoughnut />
   </div>
 </div>
