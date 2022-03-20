@@ -99,26 +99,32 @@ export default defineComponent({
       id="top-icons-list"
       class="container flex flex-col gap-3 tablet:gap-12 w-full tablet:w-28 left-0 mb-4"
     >
-      <icon-nav-bar
-        :name="'Home'"
-        :activePage="activePage"
-        :icon="homeBtn"
-        :iconFull="homeBtnFull"
-      />
+      <router-link to="Home">
+        <icon-nav-bar
+          :name="'Home'"
+          :activePage="activePage"
+          :icon="homeBtn"
+          :iconFull="homeBtnFull"
+        />
+      </router-link>
 
-      <icon-nav-bar
-        :name="'Statistics'"
-        :activePage="activePage"
-        :icon="statisticsBtn"
-        :iconFull="statisticsBtnFull"
-      />
+      <router-link to="Statistics">
+        <icon-nav-bar
+          :name="'Statistics'"
+          :activePage="activePage"
+          :icon="statisticsBtn"
+          :iconFull="statisticsBtnFull"
+        />
+      </router-link>
 
-      <icon-nav-bar
-        :name="'Bot'"
-        :activePage="activePage"
-        :icon="botBtn"
-        :iconFull="botBtnFull"
-      />
+      <router-link to="Bot">
+        <icon-nav-bar
+          :name="'Bot'"
+          :activePage="activePage"
+          :icon="botBtn"
+          :iconFull="botBtnFull"
+        />
+      </router-link>
     </div>
     <div
       class="bg-darkBorder flex-shrink-0 w-5/6 h-0.5 mx-auto rounded-sm"
