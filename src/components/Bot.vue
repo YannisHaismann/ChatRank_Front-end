@@ -42,8 +42,8 @@ export default defineComponent({
       </div>
       <div class="p-4 h-full w-full tablet:p-12 flex flex-col relative">
         <div>
-          <p class="text-white font-maven-medium text-20px">Informations</p>
-          <div class="mt-4 flex">
+          <p class="text-white font-maven-medium text-12px tablet:text-20px">Informations</p>
+          <div class="mt-1 tablet:mt-4 flex">
             <div class="text-white w-20 tablet:w-32 largeScreen:w-40 font-maven-medium">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Name</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">Bot-#536</p>
@@ -54,15 +54,15 @@ export default defineComponent({
             </div>
           </div>
         </div>
-        <div class="my-10 bg-darkBorder h-0.5 rounded-2xl">
+        <div class="my-2 tablet:my-10 bg-darkBorder h-0.5 rounded-2xl">
         </div>
         <div>
-          <p class="text-white font-maven-medium text-20px">Rules</p>
+          <p class="text-white font-maven-medium text-12px tablet:text-20px">Rules</p>
           <div class="mt-4 flex h-full w-full">
             <table
               class="text-white block border-2 border-darkBorder h-full w-full bg-darkC rounded-2xl font-maven-medium"
             >
-              <thead class="bg-darkB border-b-2 border-darkBorder w-full text-10px tablet:text-14px h-5 tablet:h-9 block relative rounded-t-2xl">
+              <thead class="bg-darkB border-b-2 border-darkBorder w-full text-8px tablet:text-14px h-5 tablet:h-9 block relative rounded-t-2xl">
                 <tr class="absolute top-1/2 transform -translate-y-1/2">
                   <td class="w-10 tablet:w-16"></td>
                   <td class="w-28 tablet:w-52">Game</td>
@@ -75,7 +75,7 @@ export default defineComponent({
               >
                 <tr class="block w-full text-6px tablet:text-14px h-6 tablet:h-12 relative border-b-2 border-darkBorder">
                   <td class="w-10 ml-5 tablet:w-16 relative">
-                    <img class="w-4 my-1 mx-auto tablet:w-9" src="./../assets/pdp-template.png" />
+                    <img class="w-4 my-0.5 tablet:my-1 mx-auto tablet:w-9" src="./../assets/pdp-template.png" />
                   </td>
                   <td class="w-28 tablet:w-52 relative"><span class="absolute top-1">League Of Legends</span><span class="absolute tablet:top-6 top-2.5 text-5px tablet:text-10px">Ranked Flex</span></td>
                   <td class="w-28 tablet:w-52">Diamond II</td>
@@ -86,13 +86,13 @@ export default defineComponent({
                   />
                 </tr>
                 <tr class="block w-full text-6px tablet:text-14px h-6 tablet:h-12 relative border-b-2 border-darkBorder">
-                  <img class="absolute w-8 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" :src="addLine" alt="">
+                  <img class="absolute w-4 tablet:w-8 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2" :src="addLine" alt="">
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <div class="mt-20 relative w-full">
+        <div class="mt-12 tablet:mt-20 relative w-full">
           <btn-validate class="absolute right-0" />
         </div>
       </div>
