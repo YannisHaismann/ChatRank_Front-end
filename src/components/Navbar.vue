@@ -133,12 +133,14 @@ export default defineComponent({
       id="bottom-icons-list"
       class="container tablet:w-28 flex flex-col gap-3 mt-4 tablet:gap-12 w-full left-0 bg-red"
     >
+    <router-link to="MyAccount">
       <icon-nav-bar
-        :name="'My account'"
+        :name="'MyAccount'"
         :activePage="activePage"
         :icon="myAccountBtn"
         :iconFull="myAccountBtnFull"
       />
+    </router-link>
       <icon-nav-bar
         :name="'Leave'"
         :activePage="activePage"
