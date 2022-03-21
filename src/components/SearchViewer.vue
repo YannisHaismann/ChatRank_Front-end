@@ -24,7 +24,7 @@ export default defineComponent({
         type="text"
         @focus="setFocus(true)"
         @blur="setFocus(false)"
-        class="bg-darkB absolute top-0 w-full outline-none rounded-2xl border-2 border-darkBorder focus:border-mainA focus:bg-red m-auto h-full text-white placeholder-white px-5 caret-white font-maven-medium text-8px tablet:text-14px"
+        class="bg-darkB absolute top-0 w-full outline-none rounded-2xl border-2 border-darkBorder focus:border-mainA m-auto h-full text-white placeholder-white px-5 caret-white font-maven-medium text-8px tablet:text-14px"
         placeholder="Search a viewer"
       />
       <img

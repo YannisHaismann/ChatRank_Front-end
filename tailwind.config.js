@@ -11,6 +11,8 @@ module.exports = {
       inset: {
         twoPointfive: "2.5px",
         onePointHeight: "1.8px",
+        '1/5': '20%',
+        '1/6': '16.6%',
       },
       colors: {
         darkA: "#0D0E1A",
@@ -27,6 +29,7 @@ module.exports = {
       },
       zIndex: {
         n1: "-1",
+        '-10': '-10'
       },
       fontFamily: {
         "maven-black": "Maven Black",
@@ -37,6 +40,9 @@ module.exports = {
         "maven-regular": "Maven Regular",
       },
       fontSize: {
+        "32px": "32px",
+        "28px": "28px",
+        "24px": "24px",
         "20px": "20px",
         "18px": "18px",
         "16px": "16px",
