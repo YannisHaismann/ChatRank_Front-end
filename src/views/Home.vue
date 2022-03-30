@@ -2,10 +2,11 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import HomeTop from './../components/HomeTop.vue';
+import HomeServices from './../components/HomeServices.vue';
 
 export default defineComponent({
   name: "Home",
-  components: { HomeTop },
+  components: { HomeTop, HomeServices },
   setup(){
 
     return {  }
@@ -14,9 +15,14 @@ export default defineComponent({
 </script>
   
 <template>
-  <div class="w-full h-full relative" id="Home">
-    <div class="w-full h-full p-2 md:p-10 bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
-      <home-top />
+  <div class="relative" id="Home">
+    <div class="w-screen h-screen p-2 lg:p-10 bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
+      <div class="relative w-full h-full">
+        <home-top />
+      </div>
+      <div class="relative w-full h-full">
+        <home-services />
+      </div>
     </div>
   </div>
 </template>

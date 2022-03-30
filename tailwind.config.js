@@ -13,6 +13,7 @@ module.exports = {
         onePointHeight: "1.8px",
         '1/5': '20%',
         '1/6': '16.6%',
+        '4/5': "80%",
       },
       colors: {
         darkA: "#0D0E1A",

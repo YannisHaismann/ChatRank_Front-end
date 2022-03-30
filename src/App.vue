@@ -13,6 +13,21 @@
 *{
   box-sizing: border-box!important;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+input:-webkit-autofill {
+    -webkit-text-fill-color: white;
+    caret-color: white;
+}
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  caret-color: white;
+}
+
 
 @font-face {
   font-family: "Maven Black";

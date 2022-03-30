@@ -4,12 +4,24 @@ import DashboardHome from "../views/dashboard/Home.vue";
 import DashboardStatistics from "../views/dashboard/Statistics.vue";
 import DashboardBot from "../views/dashboard/Bot.vue";
 import DashboardMyAccount from "../views/dashboard/MyAccount.vue";
+import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
   {
     path: "/about",
