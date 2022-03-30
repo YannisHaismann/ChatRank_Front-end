@@ -15,8 +15,8 @@ export default defineComponent({
 </script>
   
 <template>
-  <div class="relative" id="Home">
-    <div class="w-screen h-screen p-2 lg:p-10 bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
+  <div class="relative w-full" id="Home">
+    <div class="w-full h-screen p-2 lg:p-10 bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
       <div class="relative w-full h-full">
         <home-top />
       </div>

@@ -13,6 +13,6 @@ export default defineComponent({
 
 <template>
   <div class="relative z-10" id="HomeServices">
-    <p>KIKOOOO</p>
+    <!-- <p>KIKOOOO</p> -->
   </div>
 </template>
