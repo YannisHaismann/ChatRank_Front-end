@@ -23,9 +23,9 @@ export default defineComponent({
       <div class="sm:w-96 w-full px-10 py-2 sm:p-0 sm:m-10">
         <login-input class="sm:mt-5 mt-2" :type="'email'" :name="'Mail'"/>
         <login-input class="sm:mt-5 mt-2" :type="'password'" :name="'Password'"/>
-        <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Mot de passe oublié ?</p>
+        <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Forgot your password ?</p>
         <router-link to="register">
-          <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">S'enregistrer ?</p>
+          <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Register ?</p>
         </router-link>
         <p class="bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-6 sm:mt-10 cursor-pointer">Login</p>
       </div>
