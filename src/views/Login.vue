@@ -1,6 +1,8 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import LoginInput from "@/components/LoginInput.vue";
+import $ from "jquery";
+import axios from "axios";
 
 export default defineComponent({
   name: "Login",
@@ -9,6 +11,25 @@ export default defineComponent({
   setup() {
     const sendLogin = () => {
       console.log('sendLogin');
+
+      let params = {
+        username: 'axios@outlook.fr',
+        password: 'axios123',
+      }
+
+      axios.post('http://127.0.0.1:8000/apip/login', {
+        username: 'axios@outlook.fr',
+        password: 'axios123',
+      })
+
+      // $.ajax('http://127.0.0.1:8000/apip/login', {
+      //   type: "POST",
+      //   data: params,
+      //   dataType: "json",
+      //   contentType: "application/json; charset=UTF-8",
+      // }).done(() => {
+      //   console.log("ENFIN AMDOULA");
+      // });
     }
 
     return { sendLogin };
@@ -27,7 +48,7 @@ export default defineComponent({
         <router-link to="register">
           <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Register ?</p>
         </router-link>
-        <p class="bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-6 sm:mt-10 cursor-pointer">Login</p>
+        <p @click="sendLogin" class="bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-6 sm:mt-10 cursor-pointer">Login</p>
       </div>
     </div>
     <img class="w-40 sm:w-96 absolute right-1 top-14 sm:top-0 sm:right-10 z-n1" src="./../assets/Cube-1.png" alt="">

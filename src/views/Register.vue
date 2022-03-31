@@ -21,17 +21,17 @@ export default defineComponent({
       // params.append('dateOfBirthday', new Date().toString());
       // params.append('phoneNumber', "0678928492");
 
-        let params = {
-          email: "axios@outlook.fr",
-          password: 'axios123',
-          firstname: 'axios123',
-          lastname: "axios123",
-          username: "axios123",
-          type: "2",
-          sex: "2",
-          dateOfBirthday: new Date().toISOString().slice(0, 10),
-          phoneNumber: "0678928492",
-        }
+      let params = {
+        email: "axios@outlook.fr",
+        password: 'axios123',
+        firstname: 'axios123',
+        lastname: "axios123",
+        username: "axios123",
+        type: 2,
+        sex: 2,
+        dateOfBirthday: new Date().toISOString().slice(0, 10),
+        phoneNumber: "0678928492",
+      }
 
       $.ajax('http://127.0.0.1:8000/apip/users/register', {
         type: "POST",
@@ -73,7 +73,7 @@ export default defineComponent({
       </div>
       <div class="mx-auto w-40 sm:w-80">
         <p class="text-white font-maven-medium w-24 sm:w-28 text-10px sm:text-12px mt-2 ml-2 cursor-pointer">Already register ?</p>
-        <p class="w-40 sm:w-80 bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-2 sm:mt-4 cursor-pointer">Register</p>
+        <p @click="register" class="w-40 sm:w-80 bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-2 sm:mt-4 cursor-pointer">Register</p>
       </div>
     </div>
     <img class="w-40 sm:w-96 absolute right-1 top-14 sm:top-0 sm:right-10 z-n1" src="./../assets/Cube-1.png" alt="">

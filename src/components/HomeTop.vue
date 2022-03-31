@@ -15,7 +15,7 @@ export default defineComponent({
 <template>
   <div class="w-full h-full" id="HomeTop">
     <login-btn class="float-right" />
-    <div class="relative z-10">
+    <div class="w-full h-full relative z-10">
       <div class="w-full h-fit flex flex-col mt-40 mx-auto">
         <p class="text-white font-maven-medium text-18px sm:text-24px lg:text-32px text-center">Thinked by streamers for streamers</p>
         <input type="text" class="w-2/3 sm:w-1/2 mt-20 lg:mt-28 h-8 sm:h-10 lg:h-12 border-2 text-12px sm:text-14px lg:text-16px outline-none text-white placeholder-secondText px-5 font-maven-medium caret-white border-darkBorder focus:border-mainA bg-black bg-opacity-40 rounded-3xl block mx-auto" placeholder="Search a streamer">
