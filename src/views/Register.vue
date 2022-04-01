@@ -1,49 +1,91 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import $ from "jquery";
 import LoginInput from "@/components/LoginInput.vue";
-
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: "Register",
   props: { },
   components: { LoginInput },
   setup() {
-    const register = () => {
-      // let params = new FormData();
-      // params.append('email', "axios@outlook.fr");
-      // params.append('password', 'axios123');
-      // params.append('firstName', 'axios123');
-      // params.append('lastName', "axios123");
-      // params.append('username', "axios123");
-      // params.append('type', "2");
-      // params.append('sex', "2");
-      // params.append('dateOfBirthday', new Date().toString());
-      // params.append('phoneNumber', "0678928492");
+    const router = useRouter();
+    const boolEmail = ref(false);
+    const boolUsername = ref(false);
 
-      let params = {
-        email: "axios@outlook.fr",
-        password: 'axios123',
-        firstname: 'axios123',
-        lastname: "axios123",
-        username: "axios123",
-        type: 2,
-        sex: 2,
-        dateOfBirthday: new Date().toISOString().slice(0, 10),
-        phoneNumber: "0678928492",
-      }
+    type User = {
+      email: string,
+      password: string,
+      firstname: string,
+      lastname: string,
+      username: string,
+      type: string,
+      sex: string,
+      dateOfBirthday: string, //new Date().toISOString().slice(0, 10)
+      phoneNumber: string,
+    };
+    
+    const userInfos = ref({} as User);
+    userInfos.value.sex = '1';
+    userInfos.value.type = '1';
+
+    const register = () => {
 
       $.ajax('http://127.0.0.1:8000/apip/users/register', {
         type: "POST",
-        data: params,
-      }).done(() => {
-        console.log("ENFIN AMDOULA");
+        data: userInfos.value,
+        success: (data: any) => {
+          boolEmail.value = false;
+          console.log("success");
+          console.log(data);
+          if(data === true){
+            router.push('/login/0');
+          }else{
+            if(data.error == 'invalid email'){
+              boolEmail.value = true;
+            }
+            if(data.error == 'invalid username'){
+              boolUsername.value = true;
+            }
+          }
+        }
       });
 
-
+    }
+    
+    const setMail = (email: string) => {
+      userInfos.value.email = email;
+    }
+    
+    const setFirstName = (firstname: string) => {
+      userInfos.value.firstname = firstname;
+    }
+    
+    const setLastName = (lastname: string) => {
+      userInfos.value.lastname = lastname;
+    }
+    
+    const setUsername = (username: string) => {
+      userInfos.value.username = username;
+    }
+    
+    const setPassword = (password: string) => {
+      userInfos.value.password = password;
+    }
+    
+    const setSex = (sex: string) => {
+      userInfos.value.sex = sex;
+    }
+    
+    const setBirthDayDate = (dateOfBirthday: string) => {
+      userInfos.value.dateOfBirthday = dateOfBirthday;
+    }
+    
+    const setPhoneNumber = (phoneNumber: string) => {
+      userInfos.value.phoneNumber = phoneNumber;
     }
 
-    return { register };
+    return { register, setMail, setFirstName, setLastName, setUsername, setPassword, setSex, setBirthDayDate, setPhoneNumber, boolEmail, boolUsername };
   },
 });
 </script>
@@ -54,21 +96,22 @@ export default defineComponent({
       <p class="text-16px sm:text-24px text-center text-white font-maven-bold mt-6">Register</p>
       <div class="w-full px-10 py-2 sm:p-10">
         <div class="flex justify-center sm:justify-between mx-auto h-full flex-wrap flex-row gap-y-4 gap-x-10">
-          <login-input class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'email'" :name="'Mail'"/>
-          <login-input class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'text'" :name="'First name'"/>
-          <login-input class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'text'" :name="'Last name'"/>
-          <login-input class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'text'" :name="'Username'"/>
-          <login-input class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'password'" :name="'Password'"/>
+          <login-input :bool="boolEmail" :errorMsg="'This mail is already used.'" @valueUpdate="setMail" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'email'" :name="'Mail'"/>
+          <login-input @valueUpdate="setFirstName" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'text'" :name="'First name'"/>
+          <login-input @valueUpdate="setLastName" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'text'" :name="'Last name'"/>
+          <login-input :bool="boolUsername" :errorMsg="'This username is already used.'" @valueUpdate="setUsername" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'text'" :name="'Username'"/>
+          <login-input @valueUpdate="setPassword" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'password'" :name="'Password'"/>
           <div class="sm:mt-5 mx-2 flex flex-col text-white font-maven-medium">
             <p class="text-10px sm:text-14px">Gender</p>
-            <select class="border-2 pl-3 outline-none border-darkBorder text-white rounded-2xl text-10px sm:text-16px bg-darkB h-6 sm:h-8 w-40 sm:w-96">
-              <option value="1">Male</option>
+            <select @change="setSex($event.target.value)" class="border-2 pl-3 outline-none border-darkBorder text-white rounded-2xl text-10px sm:text-16px bg-darkB h-6 sm:h-8 w-40 sm:w-96">
+              <option selected value="1">Male</option>
               <option value="2">Female</option>
               <option value="3">Neutral Gender</option>
             </select>
           </div>
-          <login-input class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'date'" :name="'Birthday date'"/>
-          <div class="sm:block hidden flex-auto"></div>
+          <login-input @change="setBirthDayDate($event.target.value)" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'date'" :name="'Birthday date'"/>
+          <login-input @valueUpdate="setPhoneNumber" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'tel'" :name="'Phone number'"/>
+          <!-- <div class="sm:block hidden flex-auto"></div> -->
         </div>
       </div>
       <div class="mx-auto w-40 sm:w-80">

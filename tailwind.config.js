@@ -1,4 +1,5 @@
 module.exports = {
+  important: true,
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     gradientColorStops: theme => ({
@@ -24,6 +25,7 @@ module.exports = {
         secondText: '#C9D9DB',
         loose: '#B64C4C',
         win: '#4C83B6',
+        error: '#E35555',
       },
       borderRadius: {
         "20px": "1.25rem",
@@ -49,6 +51,7 @@ module.exports = {
         "16px": "16px",
         "14px": "14px",
         "12px": "12px",
+        "11px": "11px",
         "10px": "10px",
         "8px": "8px",
         "7px": "7px",

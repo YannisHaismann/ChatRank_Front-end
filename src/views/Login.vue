@@ -1,38 +1,34 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import LoginInput from "@/components/LoginInput.vue";
-import $ from "jquery";
 import axios from "axios";
+import { useRouter } from 'vue-router';
+import Exclamation from "@/assets/exclamation.svg";
 
 export default defineComponent({
   name: "Login",
   props: { },
   components: { LoginInput },
   setup() {
+    const router = useRouter();
+    const boolRegisteredMsg = ref(false);
+
     const sendLogin = () => {
       console.log('sendLogin');
-
-      let params = {
-        username: 'axios@outlook.fr',
-        password: 'axios123',
-      }
 
       axios.post('http://127.0.0.1:8000/apip/login', {
         username: 'axios@outlook.fr',
         password: 'axios123',
       })
 
-      // $.ajax('http://127.0.0.1:8000/apip/login', {
-      //   type: "POST",
-      //   data: params,
-      //   dataType: "json",
-      //   contentType: "application/json; charset=UTF-8",
-      // }).done(() => {
-      //   console.log("ENFIN AMDOULA");
-      // });
     }
+    onMounted(() => {
+      if(router.currentRoute.value.params.justRegistered == '0'){
+        boolRegisteredMsg.value = true;
+      }
+    });
 
-    return { sendLogin };
+    return { sendLogin, boolRegisteredMsg, Exclamation };
   },
 });
 </script>
@@ -42,6 +38,10 @@ export default defineComponent({
     <div class="w-fit h-fit border-2 border-darkBorder bg-darkC rounded-2xl m-auto" id="login_container">
       <p class="text-16px sm:text-24px text-center text-white font-maven-bold mt-6">Login</p>
       <div class="sm:w-96 w-full px-10 py-2 sm:p-0 sm:m-10">
+        <div v-if="boolRegisteredMsg" class="border-2 border-mainA bg-darkB h-8 rounded flex">
+          <img class="-mt-0.5 ml-3 w-1.5" :src="Exclamation" />
+          <p class="text-white font-maven-medium text-11px mt-1.5 ml-4">You have been correctly registered</p>
+        </div>
         <login-input class="sm:mt-5 mt-2" :type="'email'" :name="'Mail'"/>
         <login-input class="sm:mt-5 mt-2" :type="'password'" :name="'Password'"/>
         <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Forgot your password ?</p>
