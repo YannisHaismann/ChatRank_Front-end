@@ -12,6 +12,7 @@ export default defineComponent({
     const router = useRouter();
     const boolEmail = ref(false);
     const boolUsername = ref(false);
+    const boolPhone = ref(false);
 
     type User = {
       email: string,
@@ -41,11 +42,15 @@ export default defineComponent({
           if(data === true){
             router.push('/login/0');
           }else{
-            if(data.error == 'invalid email'){
-              boolEmail.value = true;
-            }
-            if(data.error == 'invalid username'){
-              boolUsername.value = true;
+            console.log(data.length);
+            for(let i = 0; i < data.length; i++){
+              if(data[i].error == 'invalid email'){
+                boolEmail.value = true;
+              }else if(data[i].error == 'invalid username'){
+                boolUsername.value = true;
+              }else if(data[i].error == 'invalid phoneNumber'){
+                boolPhone.value = true;
+              }
             }
           }
         }
@@ -109,7 +114,7 @@ export default defineComponent({
               <option value="3">Neutral Gender</option>
             </select>
           </div>
-          <login-input @change="setBirthDayDate($event.target.value)" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'date'" :name="'Birthday date'"/>
+          <login-input :bool="boolPhone" :errorMsg="'This username is already used.'" @valueUpdate="setPhoneNumber" @change="setBirthDayDate($event.target.value)" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'date'" :name="'Birthday date'"/>
           <login-input @valueUpdate="setPhoneNumber" class="sm:mt-5 mx-2 w-40 sm:w-96" :type="'tel'" :name="'Phone number'"/>
           <!-- <div class="sm:block hidden flex-auto"></div> -->
         </div>

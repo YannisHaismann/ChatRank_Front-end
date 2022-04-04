@@ -7,6 +7,8 @@ module.exports = {
       'bgDarkGreen': '#183027',
       'bgMiddleColor': '#0F1B1E',
       'bgLeftColor': '#0D0E1A',
+      'circleFirst': '#3AA5BD',
+      'circleSecond': '#3ABD8E',
     }),
     extend: {
       inset: {
@@ -73,7 +75,12 @@ module.exports = {
         '410px': '410px',
       },
       height: {
-        '27rem': '27rem'
+        '27rem': '27rem',
+        '30rem': '30rem'
+      },
+      width: {
+        '27rem': '27rem',
+        '34rem': '34rem',
       }
     },
   },
