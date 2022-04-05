@@ -9,6 +9,11 @@ module.exports = {
       'bgLeftColor': '#0D0E1A',
       'circleFirst': '#3AA5BD',
       'circleSecond': '#3ABD8E',
+      'cardGreen': '#278D3E',
+      'cardBlue': '#27508D',
+      'cardPink': '#E52755',
+      'cardYellow': '#FAFF00',
+      'cardOrange': '#FD9A21',
     }),
     extend: {
       inset: {
@@ -28,6 +33,7 @@ module.exports = {
         loose: '#B64C4C',
         win: '#4C83B6',
         error: '#E35555',
+        orange: '#FD9A21',
       },
       borderRadius: {
         "20px": "1.25rem",
@@ -76,7 +82,9 @@ module.exports = {
       },
       height: {
         '27rem': '27rem',
-        '30rem': '30rem'
+        '30rem': '30rem',
+        '36rem': '36rem',
+        '38rem': '38rem'
       },
       width: {
         '27rem': '27rem',
