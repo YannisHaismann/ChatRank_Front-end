@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full h-fit" id="HomeOffers">
+  <div class="w-full h-fit flex" id="HomeOffers">
     <OfferCardBasic />
     <OfferCardPremium />
   </div>

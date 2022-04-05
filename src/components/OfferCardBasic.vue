@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full h-fit" id="OfferCardBasic">
+  <div class="h-fit" id="OfferCardBasic">
     <div class="bg-gradient-to-tr from-cardBlue via-cardBlue to-cardGreen text-white font-maven-medium h-38rem w-96 rounded-2xl flex flex-col relative">
       <p class="font-maven-bold text-center text-24px pt-4">Streamer basic</p>
       <img class="mx-auto" src="./../assets/streamer_basic_png.png" alt="">

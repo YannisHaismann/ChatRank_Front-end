@@ -17,18 +17,18 @@ export default defineComponent({
 </script>
   
 <template>
-  <div class="relative w-fit h-fit" id="Home">
-    <div class="w-fit h-fit p-2 lg:p-10 bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
-      <div class="relative w-screen h-screen">
+  <div class="relative" id="Home">
+    <div class="p-2 lg:p-10 bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
+      <div class="relative h-screen">
         <home-top />
       </div>
-      <div class="relative w-screen h-fit">
+      <div class="relative h-fit">
         <home-services />
       </div>
-      <div class="relative w-screen h-screen">
+      <div class="relative h-screen">
         <HomeOffers />
       </div>
-      <div class="relative w-screen h-screen">
+      <div class="relative h-screen">
         <Footer />
       </div>
     </div>
