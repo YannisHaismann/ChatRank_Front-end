@@ -22,6 +22,7 @@ module.exports = {
         '1/5': '20%',
         '1/6': '16.6%',
         '4/5': "80%",
+        '2/5': "40%",
       },
       colors: {
         darkA: "#0D0E1A",
@@ -81,14 +82,23 @@ module.exports = {
         '410px': '410px',
       },
       height: {
+        '24rem': '24rem',
         '27rem': '27rem',
         '30rem': '30rem',
+        '34rem': '34rem',
         '36rem': '36rem',
-        '38rem': '38rem'
+        '38rem': '38rem',
+        '40rem': '40rem'
       },
       width: {
+        '24rem': '24rem',
         '27rem': '27rem',
+        '30rem': '30rem',
         '34rem': '34rem',
+        '36rem': '36rem',
+        '40rem': '40rem',
+        '44rem': '44rem',
+        '50rem': '50rem',
       }
     },
   },

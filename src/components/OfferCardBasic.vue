@@ -13,9 +13,9 @@ export default defineComponent({
 
 <template>
   <div class="h-fit" id="OfferCardBasic">
-    <div class="bg-gradient-to-tr from-cardBlue via-cardBlue to-cardGreen text-white font-maven-medium h-38rem w-96 rounded-2xl flex flex-col relative">
+    <div class="bg-gradient-to-tr from-cardBlue via-cardBlue to-cardGreen text-white font-maven-medium h-36rem w-96 rounded-2xl flex flex-col relative">
       <p class="font-maven-bold text-center text-24px pt-4">Streamer basic</p>
-      <img class="mx-auto" src="./../assets/streamer_basic_png.png" alt="">
+      <img class="mx-auto w-44" src="./../assets/streamer_basic_png.png" alt="">
       <div class="flex flex-col mt-4 gap-4">
         <div class="relative">
           <img class="absolute left-20" src="./../assets/donut_blue.png" alt="">

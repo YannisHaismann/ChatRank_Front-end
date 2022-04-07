@@ -13,12 +13,12 @@ export default defineComponent({
 
 <template>
     <div class="h-fit" id="OfferCardPremium">
-      <div class="bg-gradient-to-tr from-cardBlue via-cardBlue to-cardGreen border-4 border-mainA text-white font-maven-medium h-38rem w-96 rounded-2xl flex flex-col relative">
+      <div class="bg-gradient-to-tr from-cardBlue via-cardBlue to-cardGreen border-4 border-mainA text-white font-maven-medium h-36rem w-96 rounded-2xl flex flex-col relative">
         <p class="font-maven-bold text-center text-24px pt-4">Streamer premium</p>
-        <img class="mx-auto" src="./../assets/premium_img.png" alt="">
+        <img class="mx-auto w-44" src="./../assets/premium_img.png" alt="">
         <div class="flex flex-col mt-4 gap-4">
           <div class="relative">
-            <img class="absolute left-20" src="./../assets/donut_blue.png" alt="">
+            <img class="absolute left-20 w-8" src="./../assets/donut_blue.png" alt="">
             <p class="text-center">Viewer statistics</p>
           </div>
           <div class="relative">
