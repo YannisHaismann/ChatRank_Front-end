@@ -14,7 +14,7 @@ export default defineComponent({
 
 <template>
   <div class="w-full h-full" id="HomeTop">
-    <login-btn class="float-right" />
+    <login-btn class="float-right mr-10" />
     <div class="w-full h-full relative z-10">
       <div class="w-full h-fit flex flex-col mt-40 mx-auto">
         <p class="text-white font-maven-medium text-18px sm:text-24px lg:text-32px text-center">Thinked by streamers for streamers</p>
