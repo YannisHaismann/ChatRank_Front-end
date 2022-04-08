@@ -83,7 +83,10 @@ module.exports = {
         '410px': '410px',
       },
       height: {
+        '18rem': '18rem',
+        '20rem': '20rem',
         '24rem': '24rem',
+        '25rem': '25rem',
         '27rem': '27rem',
         '30rem': '30rem',
         '34rem': '34rem',
@@ -92,7 +95,10 @@ module.exports = {
         '40rem': '40rem'
       },
       width: {
+        '20rem': '20rem',
+        '22rem': '22rem',
         '24rem': '24rem',
+        '25rem': '25rem',
         '27rem': '27rem',
         '30rem': '30rem',
         '34rem': '34rem',

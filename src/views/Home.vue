@@ -22,8 +22,8 @@ export default defineComponent({
   
 <template>
   <div class="relative" id="Home">
-    <div id="home-top" class="snap snap-y snap-mandatory h-screen overflow-y-scroll bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
-      <div class="snap-start pt-2 lg:pt-10 relative h-screen">
+    <div id="home-top" class="overflow-x-hidden md:overflow-auto snap snap-y snap-mandatory h-screen overflow-y-scroll bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen"> 
+      <div class="snap-start pt-6 lg:pt-10 relative h-screen">
         <home-top />
       </div>
       <HomeServices1 class="snap-start" />
