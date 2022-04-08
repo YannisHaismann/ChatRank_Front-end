@@ -12,7 +12,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full h-fit absolute bottom-0" id="Footer">
+  <div class="w-full h-fit" id="Footer">
     <div class="text-white w-full bg-darkA h-28 relative">
       <p class="font-maven-medium text-center text-14px pt-6">
         <span class="cursor-pointer mx-5">Privacy policy</span>

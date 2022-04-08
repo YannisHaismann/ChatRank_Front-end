@@ -29,7 +29,7 @@ export default defineComponent({
       <HomeServices1 class="snap-start" />
       <HomeServices2 class="snap-start" />
       <HomeServices3 class="snap-start" />
-      <div class="snap-start relative h-screen">
+      <div class="snap-start relative h-fit min-h-screen flex flex-col justify-between">
         <HomeOffers />
         <Footer />
       </div>

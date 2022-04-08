@@ -14,8 +14,8 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="relative w-full h-full flex justify-center" id="HomeOffers">
-    <OfferCardBasic class="mx-10 right-1/2 absolute top-1/2 transform -translate-y-1/2" />
-    <OfferCardPremium class="mx-10 left-1/2 absolute top-2/5 transform -translate-y-1/2" />
+  <div class="relative h-fit w-full min-h-full flex justify-center" id="HomeOffers">
+    <OfferCardBasic class="mx-10 mb-20 mt-32" />
+    <OfferCardPremium class="mx-10 mb-20 mt-20" />
   </div>
 </template>

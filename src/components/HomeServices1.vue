@@ -13,12 +13,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full h-screen flex p-20" id="service1">
-    <div class="text-white font-maven-medium my-auto w-1/2 pr-40 2xl:pr-60">
+  <div class="w-full h-screen flex flex-col lg:flex-row p-20" id="service1">
+    <div class="text-white font-maven-medium my-auto lg:w-1/2 lg:pr-40 2xl:pr-60">
       <h2 class="font-maven-black text-20px mb-4">Loremp</h2>
       <p class="text-18px ml-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam totam molestias voluptatibus quis nisi, veniam aliquid optio sequi accusamus aspernatur! Quaerat inventore, ipsum debitis eos ipsa impedit neque consequatur sit.</p>
     </div>
-    <div class="w-1/2 relative">
+    <div class="h-1/2 lg:w-1/2 lg:h-full relative">
     <SlimCircleService />
       <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-24rem xl:w-30rem 2xl:w-40rem h-full">
         <div class="relative w-full top-1/2 transform -translate-y-1/2 h-20">
