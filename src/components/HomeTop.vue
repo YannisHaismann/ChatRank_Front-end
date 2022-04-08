@@ -13,7 +13,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="w-full h-full" id="HomeTop">
+  <div class="w-full h-fit" id="HomeTop">
     <login-btn class="float-right mr-10" />
     <div class="w-full h-full flex relative z-10">
       <div class="w-full h-fit flex flex-col lg:m-auto">
