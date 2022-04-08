@@ -1,5 +1,5 @@
 module.exports = {
-  important: true,
+  important: false,
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     gradientColorStops: theme => ({
