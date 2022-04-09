@@ -1,13 +1,43 @@
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import LoginBtn from '@/components/LoginBtn.vue';
+import $ from "jquery";
 
 export default defineComponent({
   name: "HomeTop",
   props: {  },
   components: { LoginBtn },
   setup() {
-    return { };
+    const request = ref();
+    const streamers = ref(null);
+
+    const sendRequest = (name: string) => {
+      if(request.value){
+        request.value.abort();
+      }
+      request.value = $.ajax('http://127.0.0.1:8000/apip/users/find/users/streamer/' + name, {
+      type: "GET",
+      success: (data: any) => {
+        console.log("success");
+        console.log(data);
+        streamers.value = data;
+      },
+      error: () => {
+        streamers.value = null;
+      }
+    });
+    }
+
+    const setStreamers = (value: any) => {
+      streamers.value = value;
+    }
+
+    const searchStreamer = (name: string) => {
+      sendRequest(name)
+      console.log(name);
+    }
+
+    return { searchStreamer, streamers, setStreamers };
   },
 });
 </script>
@@ -18,7 +48,14 @@ export default defineComponent({
     <div class="w-full h-full flex relative z-10">
       <div class="w-full h-fit flex flex-col lg:m-auto">
         <p class="text-white font-maven-medium text-18px sm:text-24px lg:text-32px text-center">Thinked by streamers for streamers</p>
-        <input type="text" class="w-2/3 sm:w-1/2 mt-20 lg:mt-28 h-8 sm:h-10 lg:h-12 border-2 text-12px sm:text-14px lg:text-16px outline-none text-white placeholder-secondText px-5 font-maven-medium caret-white border-darkBorder focus:border-mainA bg-black bg-opacity-40 rounded-3xl block mx-auto" placeholder="Search a streamer">
+        <div class="h-fit relative w-2/3 sm:w-1/2 mx-auto">
+          <input @blur="setStreamers(null)" @focus="searchStreamer($event.target.value)" @keyup="searchStreamer($event.target.value)" type="text" :class="{'rounded-b-3xl border-b-2': streamers == null || streamers.length == 0}" class="w-full mt-20 lg:mt-28 h-8 sm:h-10 lg:h-12 border-t-2 border-r-2 border-l-2 text-12px sm:text-14px lg:text-16px outline-none text-white placeholder-secondText px-5 font-maven-medium caret-white border-darkBorder focus:border-mainA bg-black bg-opacity-40 rounded-t-3xl block" placeholder="Search a streamer">
+          <div v-if="streamers && streamers.length > 0" class="absolute w-full h-fit border-2 rounded-b-3xl overflow-hidden border-mainA">
+            <div v-for="streamer in streamers" :key="streamer.id" class="bg-darkC bg-opacity-40 h-10 py-2 text-white font-maven-medium">
+              <p class="ml-4">{{ streamer.username }}</p>
+            </div>
+          </div>
+        </div>
         <div class="flex w-1/2 justify-between mx-auto my-6 sm:my-10">
           <img class="h-5 sm:h-10 lg:h-20" src="./../assets/Twitch_logo.png" alt="">
           <img class="h-3 sm:h-6 lg:h-12 mt-2 sm:mt-4 lg:mt-8" src="./../assets/riot.png" alt="">
