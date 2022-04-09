@@ -30,6 +30,10 @@ export default defineComponent({
     userInfos.value.sex = '1';
     userInfos.value.type = '1';
 
+    const goToLogin = () => {
+      router.push('/login');
+    }
+
     const register = () => {
 
       $.ajax('http://127.0.0.1:8000/apip/users/register', {
@@ -90,7 +94,7 @@ export default defineComponent({
       userInfos.value.phoneNumber = phoneNumber;
     }
 
-    return { register, setMail, setFirstName, setLastName, setUsername, setPassword, setSex, setBirthDayDate, setPhoneNumber, boolEmail, boolUsername };
+    return { register, setMail, setFirstName, setLastName, setUsername, setPassword, setSex, setBirthDayDate, setPhoneNumber, boolEmail, boolUsername, goToLogin };
   },
 });
 </script>
@@ -120,7 +124,7 @@ export default defineComponent({
         </div>
       </div>
       <div class="mx-auto w-40 sm:w-80">
-        <p class="text-white font-maven-medium w-24 sm:w-28 text-10px sm:text-12px mt-2 ml-2 cursor-pointer">Already register ?</p>
+        <p @click="goToLogin" class="text-white font-maven-medium w-24 sm:w-28 text-10px sm:text-12px mt-2 ml-2 cursor-pointer">Already register ?</p>
         <p @click="register" class="w-40 sm:w-80 bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-2 sm:mt-4 cursor-pointer">Register</p>
       </div>
     </div>

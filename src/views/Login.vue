@@ -9,26 +9,56 @@ export default defineComponent({
   name: "Login",
   props: { },
   components: { LoginInput },
-  setup() {
+  setup(props, context) {
     const router = useRouter();
     const boolRegisteredMsg = ref(false);
+    const mail = ref();
+    const password = ref();
+    const errorBool = ref(false);
 
     const sendLogin = () => {
       console.log('sendLogin');
 
       axios.post('http://127.0.0.1:8000/apip/login', {
-        username: 'axios@outlook.fr',
-        password: 'axios123',
+        username: mail.value,
+        password: password.value,
+        
+      }).then((response) => {
+        console.log("response");
+        console.log(response.data);
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth();
+        var day = d.getDate();
+        var c = new Date(year + 1, month, day);
+
+        document.cookie = "id=" + response.data.id + ";expires=" + c;
+        document.cookie = "email=" + response.data.email + ";expires=" + c;
+        document.cookie = "password=" + response.data.password + ";expires=" + c;
+        document.cookie = "roles=" + response.data.type + ";expires=" + c;
+
+        router.push('/');
+      }).catch((error) => {
+        errorBool.value = true;
       })
 
     }
+
+    const updateMail = (value: string) => {
+      mail.value = value;
+    }
+
+    const updatePassword = (value: string) => {
+      password.value = value;
+    }
+
     onMounted(() => {
       if(router.currentRoute.value.params.justRegistered == '0'){
         boolRegisteredMsg.value = true;
       }
     });
 
-    return { sendLogin, boolRegisteredMsg, Exclamation };
+    return { sendLogin, boolRegisteredMsg, Exclamation, updateMail, updatePassword, errorBool };
   },
 });
 </script>
@@ -38,12 +68,12 @@ export default defineComponent({
     <div class="w-fit h-fit border-2 border-darkBorder bg-darkC rounded-2xl m-auto" id="login_container">
       <p class="text-16px sm:text-24px text-center text-white font-maven-bold mt-6">Login</p>
       <div class="sm:w-96 w-full px-10 py-2 sm:p-0 sm:m-10">
-        <div v-if="boolRegisteredMsg" class="border-2 border-mainA bg-darkB h-8 rounded flex">
+        <div v-if="boolRegisteredMsg && !errorBool" class="border-2 border-mainA bg-darkB h-8 rounded flex">
           <img class="-mt-0.5 ml-3 w-1.5" :src="Exclamation" />
           <p class="text-white font-maven-medium text-11px mt-1.5 ml-4">You have been correctly registered</p>
         </div>
-        <login-input class="sm:mt-5 mt-2" :type="'email'" :name="'Mail'"/>
-        <login-input class="sm:mt-5 mt-2" :type="'password'" :name="'Password'"/>
+        <login-input @valueUpdate="updateMail($event)" class="sm:mt-5 mt-2" :bool="errorBool" :type="'email'" :name="'Mail'"/>
+        <login-input @valueUpdate="updatePassword($event)" class="sm:mt-5 mt-2" :bool="errorBool" :errorMsg="'Invalid credentials'" :type="'password'" :name="'Password'"/>
         <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Forgot your password ?</p>
         <router-link to="register">
           <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Register ?</p>

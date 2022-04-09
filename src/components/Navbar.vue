@@ -62,6 +62,8 @@ export default defineComponent({
         delay: -0.2,
       });
       navbarTl.pause(0);
+
+      navbarTl.reverse();
     });
 
     return {
