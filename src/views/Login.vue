@@ -4,11 +4,12 @@ import LoginInput from "@/components/LoginInput.vue";
 import axios from "axios";
 import { useRouter } from 'vue-router';
 import Exclamation from "@/assets/exclamation.svg";
+import BackHomeBtn from "@/components/BackHomeBtn.vue";
 
 export default defineComponent({
   name: "Login",
   props: { },
-  components: { LoginInput },
+  components: { LoginInput, BackHomeBtn },
   setup(props, context) {
     const router = useRouter();
     const boolRegisteredMsg = ref(false);
@@ -65,20 +66,23 @@ export default defineComponent({
 
 <template>
   <div class="w-full h-full flex bg-gradient-to-tr from-bgLeftColor via-bgMiddleColor to-bgDarkGreen relative z-10" id="login">
-    <div class="w-fit h-fit border-2 border-darkBorder bg-darkC rounded-2xl m-auto" id="login_container">
-      <p class="text-16px sm:text-24px text-center text-white font-maven-bold mt-6">Login</p>
-      <div class="sm:w-96 w-full px-10 py-2 sm:p-0 sm:m-10">
-        <div v-if="boolRegisteredMsg && !errorBool" class="border-2 border-mainA bg-darkB h-8 rounded flex">
-          <img class="-mt-0.5 ml-3 w-1.5" :src="Exclamation" />
-          <p class="text-white font-maven-medium text-11px mt-1.5 ml-4">You have been correctly registered</p>
+    <div class="m-auto flex flex-col gap-3">
+      <BackHomeBtn />
+      <div class="w-fit h-fit border-2 border-darkBorder bg-darkC rounded-2xl" id="login_container">
+        <p class="text-16px sm:text-24px text-center text-white font-maven-bold mt-6">Login</p>
+        <div class="sm:w-96 w-full px-10 py-2 sm:p-0 sm:m-10">
+          <div v-if="boolRegisteredMsg && !errorBool" class="border-2 border-mainA bg-darkB h-8 rounded flex">
+            <img class="-mt-0.5 ml-3 w-1.5" :src="Exclamation" />
+            <p class="text-white font-maven-medium text-11px mt-1.5 ml-4">You have been correctly registered</p>
+          </div>
+          <login-input @valueUpdate="updateMail($event)" class="sm:mt-5 mt-2" :bool="errorBool" :type="'email'" :name="'Mail'"/>
+          <login-input @valueUpdate="updatePassword($event)" class="sm:mt-5 mt-2" :bool="errorBool" :errorMsg="'Invalid credentials'" :type="'password'" :name="'Password'"/>
+          <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Forgot your password ?</p>
+          <router-link to="register">
+            <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Register ?</p>
+          </router-link>
+          <p @click="sendLogin" class="bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-6 sm:mt-10 cursor-pointer">Login</p>
         </div>
-        <login-input @valueUpdate="updateMail($event)" class="sm:mt-5 mt-2" :bool="errorBool" :type="'email'" :name="'Mail'"/>
-        <login-input @valueUpdate="updatePassword($event)" class="sm:mt-5 mt-2" :bool="errorBool" :errorMsg="'Invalid credentials'" :type="'password'" :name="'Password'"/>
-        <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Forgot your password ?</p>
-        <router-link to="register">
-          <p class="text-white font-maven-medium text-10px sm:text-12px mt-2">Register ?</p>
-        </router-link>
-        <p @click="sendLogin" class="bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-6 sm:mt-10 cursor-pointer">Login</p>
       </div>
     </div>
     <img class="w-40 sm:w-96 absolute right-1 top-14 sm:top-0 sm:right-10 z-n1" src="./../assets/Cube-1.png" alt="">

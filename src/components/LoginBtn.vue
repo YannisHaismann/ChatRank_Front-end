@@ -14,7 +14,7 @@ export default defineComponent({
 </script>
 
 <template>
-<router-link to="Login">
+<router-link to="/login">
   <div class="flex h-12 md:h-16 w-fit font-maven-medium gap-3 relative z-50" id="LoginBtn">
     <img class="w-10 mb-1.5 md:mb-0 md:w-14 lg:w-full" :src="loginImg" alt="">
     <div class="h-full w-fit flex">
