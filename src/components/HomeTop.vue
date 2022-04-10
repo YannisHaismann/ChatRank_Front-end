@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import LoginBtn from '@/components/LoginBtn.vue';
+import { useRouter } from 'vue-router';
 import $ from "jquery";
 
 export default defineComponent({
@@ -10,6 +11,7 @@ export default defineComponent({
   setup() {
     const request = ref();
     const streamers = ref(null);
+    const router = useRouter();
 
     const sendRequest = (name: string) => {
       if(request.value){
@@ -28,6 +30,10 @@ export default defineComponent({
     });
     }
 
+    const sendToProfile = (username: string) => {
+      router.push('/Profile/' + username);
+    }
+
     const setStreamers = (value: any) => {
       streamers.value = value;
     }
@@ -37,7 +43,7 @@ export default defineComponent({
       console.log(name);
     }
 
-    return { searchStreamer, streamers, setStreamers };
+    return { searchStreamer, streamers, setStreamers, sendToProfile };
   },
 });
 </script>
@@ -49,9 +55,9 @@ export default defineComponent({
       <div class="w-full h-fit flex flex-col lg:m-auto">
         <p class="text-white font-maven-medium text-18px sm:text-24px lg:text-32px text-center">Thinked by streamers for streamers</p>
         <div class="h-fit relative w-2/3 sm:w-1/2 mx-auto">
-          <input @blur="setStreamers(null)" @focus="searchStreamer($event.target.value)" @keyup="searchStreamer($event.target.value)" type="text" :class="{'rounded-b-3xl border-b-2': streamers == null || streamers.length == 0}" class="w-full mt-20 lg:mt-28 h-8 sm:h-10 lg:h-12 border-t-2 border-r-2 border-l-2 text-12px sm:text-14px lg:text-16px outline-none text-white placeholder-secondText px-5 font-maven-medium caret-white border-darkBorder focus:border-mainA bg-black bg-opacity-40 rounded-t-3xl block" placeholder="Search a streamer">
+          <input @focus="searchStreamer($event.target.value)" @keyup="searchStreamer($event.target.value)" type="text" :class="{'rounded-b-3xl border-b-2': streamers == null || streamers.length == 0}" class="w-full mt-20 lg:mt-28 h-8 sm:h-10 lg:h-12 border-t-2 border-r-2 border-l-2 text-12px sm:text-14px lg:text-16px outline-none text-white placeholder-secondText px-5 font-maven-medium caret-white border-darkBorder focus:border-mainA bg-black bg-opacity-40 rounded-t-3xl block" placeholder="Search a streamer">
           <div v-if="streamers && streamers.length > 0" class="absolute w-full h-fit border-2 rounded-b-3xl overflow-hidden border-mainA">
-            <div v-for="streamer in streamers" :key="streamer.id" class="bg-darkC bg-opacity-40 h-10 py-2 text-white font-maven-medium">
+            <div @click="sendToProfile(streamer.username)" v-for="streamer in streamers" :key="streamer.id" class="bg-darkC bg-opacity-40 h-10 py-2 text-white font-maven-medium">
               <p class="ml-4">{{ streamer.username }}</p>
             </div>
           </div>

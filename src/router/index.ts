@@ -6,12 +6,18 @@ import DashboardBot from "../views/dashboard/Bot.vue";
 import DashboardMyAccount from "../views/dashboard/MyAccount.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
+import ProfileStreamer from "../views/ProfileStreamer.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/Profile/:nameStreamer",
+    name: "ProfileStreamer",
+    component: ProfileStreamer,
   },
   {
     path: "/login/:justRegistered?",
