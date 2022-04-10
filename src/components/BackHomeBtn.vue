@@ -15,8 +15,8 @@ export default defineComponent({
 <template>
 <router-link to="/">
   <div class="flex" id="BackHomeBtn">
-    <img :src="backhome">
-    <p class="font-maven-medium ml-3 mt-1 text-white text-22px">Back home</p>
+    <img class="w-8 sm:w-10" :src="backhome">
+    <p class="font-maven-medium ml-3 mt-0.5 sm:mt-1 text-white text-20px sm:text-22px">Back home</p>
   </div>
 </router-link>
 </template>

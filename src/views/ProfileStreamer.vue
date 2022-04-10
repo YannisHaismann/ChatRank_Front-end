@@ -50,15 +50,15 @@ export default defineComponent({
     <LoginBtn class="absolute right-10" />
     <div class="m-auto flex flex-col gap-3 w-2/3 h-1/2">
       <BackHomeBtn />
-      <div class="w-full h-full border-2 border-darkBorder bg-darkC m-auto rounded-2xl p-10">
+      <div class="w-full h-full border-2 border-darkBorder bg-darkC m-auto rounded-2xl p-2 sm:p-10">
         <div class="flex p-5 flex-col justify-around h-full" v-if="streamer">
           <div class="flex">
-            <img class="rounded-2xl w-24" :src="getImgUrl(streamer.url_profile_img)" alt="">
-            <p class="text-white font-maven-medium ml-10 h-8 my-auto">{{ streamer.username }}</p>
+            <img class="rounded-2xl w-16 sm:w-24" :src="getImgUrl(streamer.url_profile_img)" alt="">
+            <p class="text-white text-14px sm:text-16px font-maven-medium ml-4 sm:ml-10 h-8 my-auto">{{ streamer.username }}</p>
           </div>
           <div class="w-full h-0.5 bg-darkBorder mx-auto"></div>
           <div class="mx-auto">
-            <p class="text-white font-maven-medium text-22px">Link as a {{ streamer.username }}'s viewer</p>
+            <p class="text-white font-maven-medium text-16px sm:text-22px">Link as a {{ streamer.username }}'s viewer</p>
             <div class="bg-mainA pt-0.5 w-3/4 mx-auto mt-4 h-8 text-white font-maven-bold rounded-2xl">
               <p class="text-center cursor-pointer">Link</p>
             </div>
