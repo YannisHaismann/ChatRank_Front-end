@@ -26,6 +26,11 @@ export default defineComponent({
       dateOfBirthday: string, //new Date().toISOString().slice(0, 10)
       phoneNumber: string,
     };
+    //https://id.twitch.tv/oauth2/authorize?client_id=1rsnaxngmvagb1twtd5rdo4d90xepb&redirect_uri=http://localhost:8080/login&response_type=token&scope=user:read:email
+    const registerWithTwitch = () => {
+      console.log("register with twitch wahouuu")
+      window.location.replace('https://id.twitch.tv/oauth2/authorize?client_id=' + '1rsnaxngmvagb1twtd5rdo4d90xepb' + '&redirect_uri=https://localhost:8080/&response_type=token&scope=user:read:email');
+    }
     
     const userInfos = ref({} as User);
     userInfos.value.sex = '1';
@@ -95,7 +100,7 @@ export default defineComponent({
       userInfos.value.phoneNumber = phoneNumber;
     }
 
-    return { register, setMail, setFirstName, setLastName, setUsername, setPassword, setSex, setBirthDayDate, setPhoneNumber, boolEmail, boolUsername, goToLogin };
+    return { register, setMail, setFirstName, setLastName, setUsername, setPassword, setSex, setBirthDayDate, setPhoneNumber, boolEmail, boolUsername, goToLogin, registerWithTwitch };
   },
 });
 </script>
@@ -129,6 +134,9 @@ export default defineComponent({
         <div class="mx-auto w-40 sm:w-80">
           <p @click="goToLogin" class="text-white font-maven-medium w-24 sm:w-28 text-10px sm:text-12px mt-2 ml-2 cursor-pointer">Already register ?</p>
           <p @click="register" class="w-40 sm:w-80 bg-mainA mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-2 sm:mt-4 cursor-pointer">Register</p>
+        </div>
+        <div class="mx-auto w-40 sm:w-80">
+          <p @click="registerWithTwitch" class="w-40 sm:w-80 bg-purple-500 mb-14 text-white font-maven-medium text-center rounded-2xl h-8 sm:h-10 pt-1 sm:pt-1 text-16px sm:text-20px mt-2 sm:mt-4 cursor-pointer">Register twitch</p>
         </div>
       </div>
     </div>
