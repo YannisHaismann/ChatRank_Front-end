@@ -1,3 +1,41 @@
+<script>
+import { defineComponent, onMounted } from 'vue';
+import { useStore } from "vuex";
+import $ from "jquery";
+
+export default defineComponent({
+  setup() {
+    const store = useStore();
+
+    const getTwitchUserInfos = (accessToken) => {
+      //https://api.twitch.tv/helix/users
+      $.ajax('https://api.twitch.tv/helix/users', {
+        type: "GET",
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken);
+        },
+        headers: {
+          "Client-ID": store.state.clientId,
+        },
+        success: (data) => {
+          data = data.data[0];
+          console.log(data);
+          store.state.user.username = data.display_name;
+        }
+      })
+    }
+    
+    onMounted(() => {
+      if(localStorage.getItem('twitch_access_token')){
+        console.log(localStorage.getItem('twitch_access_token'));
+        getTwitchUserInfos(localStorage.getItem('twitch_access_token'));
+      }
+    })
+  },
+})
+</script>
+
+
 <template>
   <router-view />
 </template>

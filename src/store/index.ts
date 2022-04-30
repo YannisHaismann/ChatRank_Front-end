@@ -8,6 +8,18 @@ export default createStore({
     looseColor: '#B64C4C',
     lolRanks: ['Iron', 'Bronze', 'Silver', 'Gold', 'Platinium', 'Diamond', 'Master', 'GrandMaster', 'Challenger'],
     lolRanksColor: ['#6A6566', '#8A665C', '#64777B', '#DFCB85', '#6CBB84', '#32368D', '#A783C2', '#FE6669', 'white'],
+    clientId: "1rsnaxngmvagb1twtd5rdo4d90xepb",
+    user: {
+      email: "",
+      password: "",
+      firstname: "",
+      lastname: "",
+      username: "",
+      type: "",
+      sex: "",
+      dateOfBirthday: "",
+      phoneNumber: "",
+    }
   },
   mutations: {},
   actions: {},
