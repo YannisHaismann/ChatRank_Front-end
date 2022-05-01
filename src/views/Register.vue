@@ -91,7 +91,7 @@ export default defineComponent({
           console.log(data);
           if(data === true){
             saveAccessToken();
-            window.location.replace("https://localhost:8080/");
+            window.location.replace("https://localhost:8080/login");
           }else{
             console.log(data.length);
             for(let i = 0; i < data.length; i++){

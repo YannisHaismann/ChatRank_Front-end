@@ -26,7 +26,6 @@ export default defineComponent({
     const accessToken = ref('');
 
     const loginWithTwitch = () => {
-      console.log("login with twitch wahouuu")
       window.location.replace('https://id.twitch.tv/oauth2/authorize?client_id=' + store.state.clientId + '&redirect_uri=https://localhost:8080/login&response_type=token&scope=user:edit+user:read:email');
     }
 

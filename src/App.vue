@@ -24,8 +24,113 @@ export default defineComponent({
         }
       })
     }
+
+    async function testBackToken () {
+      return new Promise((resolve, reject) => {
+        $.ajax('http://127.0.0.1:8000/apip/users/find/pierre51', {
+          type: "GET",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + "localStorage.getItem('back_token')");
+          },
+          success: (data) => {
+            resolve(data);
+          },
+          error: (error) => {
+            console.log("Erreur : ");
+            console.log(error.responseJSON);
+            reject(1);
+          }
+        })
+      });
+    }
+
+    async function refreshToken () {
+      return new Promise((resolve, reject) => {
+        $.ajax('http://127.0.0.1:8000/apip/token/refresh', {
+          type: "POST",
+          dataType: 'json',
+          contentType: "application/json; charset=utf-8",
+          data: JSON.stringify({
+            refresh_token: localStorage.getItem('back_refresh_token'),
+          }),
+          success: (data) => {
+            console.log("success");
+            resolve(data);
+          },
+          error: (error) => {
+            console.log("error");
+            reject(error);
+          }
+        })
+      })
+    }
+
+    async function checkTwitchToken() {
+      return new Promise((resolve, reject) => {
+        $.ajax('https://api.twitch.tv/helix/users', {
+          type: "GET",
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('twitch_access_token'));
+          },
+          headers: {
+            "Client-ID": store.state.clientId,
+          },
+          success: (data) => {
+            resolve(data);
+          },
+          error: (error) => {
+            reject(error);
+          } 
+        })
+      });
+    }
+
+    async function updateTokensAndCheckIfLogin() {
+      if(localStorage.getItem('twitch_access_token') && localStorage.getItem('back_token')){
+        let response;
+        try{
+          response = await checkTwitchToken();
+          try{
+            response = await testBackToken();
+            // Connecté
+          }catch(error){
+            try{
+              response = await refreshToken();
+              localStorage.setItem('back_token', response.token);
+              localStorage.setItem('back_refresh_token', response.refresh_token);
+              // Connecté
+            }catch(err){
+              console.log(err);
+            }
+          }
+        }catch(e){
+          console.log(e);
+        }
+        console.log("response =>");
+        console.log(response);
+        // test back token 
+        // If good suite
+          // Mettre à jour les données avec twitch
+          // If c'est good mise à jour des données
+          // Else need to login in
+        // Else Use resfresh Token
+          // If refresh ok and get token -> back
+          // Else Need to login
+        
+      }
+
+      // If back token access && token twitch
+      // Login in
+      // Else if back refresh token & token twitch
+      // request to get token access
+      // Else 
+      // Need login in
+    }
     
     onMounted(() => {
+
+      updateTokensAndCheckIfLogin();
+
       if(localStorage.getItem('twitch_access_token')){
         console.log(localStorage.getItem('twitch_access_token'));
         getTwitchUserInfos(localStorage.getItem('twitch_access_token'));
