@@ -1,17 +1,20 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import LoginBtn from '@/components/LoginBtn.vue';
+import ConnectedBtn from '@/components/ConnectedBtn.vue';
 import { useRouter } from 'vue-router';
+import { useStore } from "vuex";
 import $ from "jquery";
 
 export default defineComponent({
   name: "HomeTop",
   props: {  },
-  components: { LoginBtn },
+  components: { ConnectedBtn, LoginBtn },
   setup() {
     const request = ref();
     const streamers = ref(null);
     const router = useRouter();
+    const store = useStore();
 
     const sendRequest = (name: string) => {
       if(request.value){
@@ -43,14 +46,15 @@ export default defineComponent({
       console.log(name);
     }
 
-    return { searchStreamer, streamers, setStreamers, sendToProfile };
+    return { searchStreamer, streamers, setStreamers, sendToProfile, store };
   },
 });
 </script>
 
 <template>
   <div class="w-full h-fit" id="HomeTop">
-    <login-btn class="float-right mr-10" />
+    <connected-btn v-if="store.state.user.username != ''" class="float-right mr-10" />
+    <login-btn v-else class="float-right mr-10" />
     <div class="w-full h-full flex relative z-10">
       <div class="w-full h-fit flex flex-col lg:m-auto">
         <p class="text-white font-maven-medium text-18px sm:text-24px lg:text-32px text-center">Thinked by streamers for streamers</p>

@@ -8,6 +8,7 @@ export default defineComponent({
   props: { },
   components: { },
   setup() {
+
     return { downArrow, loginImg };
   },
 });
@@ -21,5 +22,5 @@ export default defineComponent({
       <p class="text-white mt-2 md:mt-4 text-16px md:text-20px">Login</p>
     </div>
   </div>
-  </router-link>
+</router-link>
 </template>

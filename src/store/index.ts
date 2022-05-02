@@ -19,6 +19,7 @@ export default createStore({
       sex: "",
       dateOfBirthday: "",
       phoneNumber: "",
+      profileImg: "",
     }
   },
   mutations: {},

@@ -65,7 +65,7 @@ export default defineComponent({
       })
     }
 
-    async function checkTwitchToken() {
+    async function getTwitchInfos() {
       return new Promise((resolve, reject) => {
         $.ajax('https://api.twitch.tv/helix/users', {
           type: "GET",
@@ -89,16 +89,16 @@ export default defineComponent({
       if(localStorage.getItem('twitch_access_token') && localStorage.getItem('back_token')){
         let response;
         try{
-          response = await checkTwitchToken();
+          response = await getTwitchInfos();
           try{
             response = await testBackToken();
-            // Connecté
+            return true;
           }catch(error){
             try{
               response = await refreshToken();
               localStorage.setItem('back_token', response.token);
               localStorage.setItem('back_refresh_token', response.refresh_token);
-              // Connecté
+              return true;
             }catch(err){
               console.log(err);
             }
@@ -106,30 +106,30 @@ export default defineComponent({
         }catch(e){
           console.log(e);
         }
-        console.log("response =>");
-        console.log(response);
-        // test back token 
-        // If good suite
-          // Mettre à jour les données avec twitch
-          // If c'est good mise à jour des données
-          // Else need to login in
-        // Else Use resfresh Token
-          // If refresh ok and get token -> back
-          // Else Need to login
-        
+        return false;
       }
+    }
+    async function updateUserFromTwitchAndConnect() {
+      let twitchInfos = await getTwitchInfos();
+      twitchInfos = twitchInfos.data[0];
+      console.log("Informations venant de twitch :");
+      console.log(twitchInfos);
 
-      // If back token access && token twitch
-      // Login in
-      // Else if back refresh token & token twitch
-      // request to get token access
-      // Else 
-      // Need login in
+      // TODO
+
+      store.state.user.username = twitchInfos.display_name;
+      store.state.user.email = twitchInfos.email;
+      store.state.user.profileImg = twitchInfos.profile_image_url;
+      console.log(store.state.user);
     }
     
     onMounted(() => {
+      if(updateTokensAndCheckIfLogin()){
+        updateUserFromTwitchAndConnect();
 
-      updateTokensAndCheckIfLogin();
+        // Update informations in bdd from twitch (username...)
+        // Passer en mode connecté
+      }
 
       if(localStorage.getItem('twitch_access_token')){
         console.log(localStorage.getItem('twitch_access_token'));
