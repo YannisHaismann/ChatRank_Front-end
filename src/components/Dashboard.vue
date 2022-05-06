@@ -11,19 +11,19 @@ export default defineComponent({
   components: { EditEmail, EditFirstName },
   setup() {
     const store = useStore();
-    const editMail = ref(false);
+    // const editMail = ref(false);
     const editFirstName = ref(false);
 
-    const hideEditEmail = () => {
-      if(editMail.value){
-        editMail.value = false;
-      }
-    }
-    const displayEditEmail = () => {
-      setTimeout(() => {
-        editMail.value = true;
-      }, 10);
-    }
+    // const hideEditEmail = () => {
+    //   if(editMail.value){
+    //     editMail.value = false;
+    //   }
+    // }
+    // const displayEditEmail = () => {
+    //   setTimeout(() => {
+    //     editMail.value = true;
+    //   }, 10);
+    // }
     const hideEditFirstName = () => {
       if(editFirstName.value){
         editFirstName.value = false;
@@ -35,7 +35,7 @@ export default defineComponent({
       }, 10);
     }
 
-    return { store, pencil, editMail, editFirstName, hideEditEmail, displayEditEmail, hideEditFirstName, displayEditFirstName };
+    return { store, pencil, editFirstName, hideEditFirstName, displayEditFirstName };
   },
 });
 </script>
@@ -54,8 +54,8 @@ export default defineComponent({
             <div class="text-white relative w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Mail</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">{{ store.state.user.email }}</p>
-              <img @click="displayEditEmail" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
-              <EditEmail v-click-outside="hideEditEmail" v-if="editMail" />
+              <!-- <img @click="displayEditEmail" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt=""> -->
+              <!-- <EditEmail v-click-outside="hideEditEmail" v-if="editMail" /> -->
             </div>
             <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium relative">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">First name</p>
