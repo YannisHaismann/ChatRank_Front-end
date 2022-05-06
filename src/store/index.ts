@@ -13,8 +13,8 @@ export default createStore({
       email: "",
       password: "",
       firstname: "",
-      lastname: "",
-      username: "",
+      lastName: "",
+      userName: "",
       type: "", // 1 Viewer / 2 streamer
       sex: "",
       dateOfBirthday: "",

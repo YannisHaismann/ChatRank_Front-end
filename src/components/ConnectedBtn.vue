@@ -24,7 +24,7 @@ export default defineComponent({
       <router-link v-if="store.state.user.type == 1" to="/account">
         <p class="text-white text-14px md:text-18px flex">My Account<img class="w-7 h-7 mt-0.5 ml-1" :src="goToArrow"></p>
       </router-link>
-      <router-link v-if="store.state.user.type == 2" to="/dashboard">
+      <router-link v-if="store.state.user.type == 2" to="/dashboard/home">
         <p class="text-white text-14px md:text-18px flex">My Dashboard<img class="w-7 h-7 mt-0.5 ml-1" :src="goToArrow"></p>
       </router-link>
     </div>

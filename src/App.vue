@@ -166,6 +166,11 @@ export default defineComponent({
       store.state.user.email = twitchInfos.email;
       store.state.user.profileImg = twitchInfos.profile_image_url;
       store.state.user.type = 1;
+      store.state.user.firstName = "firstname";
+      store.state.user.lastName = "lastname";
+      store.state.user.sex = "sex";
+      store.state.user.dateOfBirthday = "dateOfBirthday";
+      store.state.user.phoneNumber = "0671289923";
 
       console.log(store.state.user);
     }
