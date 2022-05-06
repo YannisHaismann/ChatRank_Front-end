@@ -143,12 +143,14 @@ export default defineComponent({
         :iconFull="myAccountBtnFull"
       />
     </router-link>
+    <router-link to="/">
       <icon-nav-bar
         :name="'Leave'"
         :activePage="activePage"
         :icon="logoutBtn"
         :iconFull="logoutBtn"
       />
+    </router-link>
     </div>
   </div>
 </template>
