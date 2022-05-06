@@ -2,17 +2,23 @@
 import { defineComponent, onMounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
 import pencil from "@/assets/pencil.svg";
-import EditEmail from "@/components/EditEmail.vue";
+// import EditEmail from "@/components/EditEmail.vue";
 import EditFirstName from "@/components/EditFirstName.vue";
+import EditLastName from "@/components/EditLastName.vue";
 import $ from "jquery";
 
 export default defineComponent({
   name: "Dashboard",
-  components: { EditEmail, EditFirstName },
+  components: { 
+    // EditEmail,
+    EditFirstName,
+    EditLastName,
+  },
   setup() {
     const store = useStore();
     // const editMail = ref(false);
     const editFirstName = ref(false);
+    const editLastName = ref(false);
 
     // const hideEditEmail = () => {
     //   if(editMail.value){
@@ -34,8 +40,19 @@ export default defineComponent({
         editFirstName.value = true;
       }, 10);
     }
+    
+    const hideEditLastName = () => {
+      if(editLastName.value){
+        editLastName.value = false;
+      }
+    }
+    const displayEditLastName = () => {
+      setTimeout(() => {
+        editLastName.value = true;
+      }, 10);
+    }
 
-    return { store, pencil, editFirstName, hideEditFirstName, displayEditFirstName };
+    return { store, pencil, editFirstName, editLastName, hideEditLastName, displayEditLastName, displayEditFirstName, hideEditFirstName };
   },
 });
 </script>
@@ -63,9 +80,11 @@ export default defineComponent({
               <img @click="displayEditFirstName" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
               <EditFirstName class="top-9" v-click-outside="hideEditFirstName" v-if="editFirstName" />
             </div>
-            <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
+            <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium relative">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Last name</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">{{ store.state.user.lastName }}</p>
+              <img @click="displayEditLastName" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
+              <EditLastName class="top-9" v-click-outside="hideEditLastName" v-if="editLastName" />
             </div>
             <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Phone</p>
