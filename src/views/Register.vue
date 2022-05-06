@@ -62,6 +62,11 @@ export default defineComponent({
           userInfos.value.email = data.email;
           userInfos.value.username = data.display_name;
           userInfos.value.profileImg = data.profile_image_url;
+          // A ENLEVER
+          userInfos.value.firstname = "AZ";
+          userInfos.value.lastname = "AZ";
+          userInfos.value.sex = "AZ";
+          userInfos.value.dateOfBirthday = new Date().toISOString().slice(0, 10);
           console.log(userInfos.value);
         }
       })

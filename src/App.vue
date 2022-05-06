@@ -166,8 +166,8 @@ export default defineComponent({
       store.state.user.email = twitchInfos.email;
       store.state.user.profileImg = twitchInfos.profile_image_url;
       store.state.user.type = 1;
-      store.state.user.firstName = "firstname";
-      store.state.user.lastName = "lastname";
+      store.state.user.firstname = "firstname";
+      store.state.user.lastname = "lastname";
       store.state.user.sex = "sex";
       store.state.user.dateOfBirthday = "dateOfBirthday";
       store.state.user.phoneNumber = "0671289923";
@@ -182,12 +182,14 @@ export default defineComponent({
         // Update informations in bdd from twitch (username...)
         // Passer en mode connecté
       }
-
+      console.log(store.state.user);
       // if(localStorage.getItem('twitch_access_token')){
       //   console.log(localStorage.getItem('twitch_access_token'));
       //   getTwitchUserInfos(localStorage.getItem('twitch_access_token'));
       // }
     })
+
+    return {  };
   },
 })
 </script>
