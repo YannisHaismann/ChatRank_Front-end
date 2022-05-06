@@ -5,6 +5,7 @@ import pencil from "@/assets/pencil.svg";
 // import EditEmail from "@/components/EditEmail.vue";
 import EditFirstName from "@/components/EditFirstName.vue";
 import EditLastName from "@/components/EditLastName.vue";
+import EditPhoneNumber from "@/components/EditPhoneNumber.vue";
 import $ from "jquery";
 
 export default defineComponent({
@@ -13,12 +14,14 @@ export default defineComponent({
     // EditEmail,
     EditFirstName,
     EditLastName,
+    EditPhoneNumber,
   },
   setup() {
     const store = useStore();
     // const editMail = ref(false);
     const editFirstName = ref(false);
     const editLastName = ref(false);
+    const editPhoneNumber = ref(false);
 
     // const hideEditEmail = () => {
     //   if(editMail.value){
@@ -52,7 +55,18 @@ export default defineComponent({
       }, 10);
     }
 
-    return { store, pencil, editFirstName, editLastName, hideEditLastName, displayEditLastName, displayEditFirstName, hideEditFirstName };
+    const hideEditPhoneNumber = () => {
+      if(editPhoneNumber.value){
+        editPhoneNumber.value = false;
+      }
+    }
+    const displayEditPhoneNumber = () => {
+      setTimeout(() => {
+        editPhoneNumber.value = true;
+      }, 10);
+    }
+
+    return { store, pencil, editFirstName, editLastName, editPhoneNumber, hideEditLastName, displayEditLastName, displayEditFirstName, hideEditFirstName, hideEditPhoneNumber, displayEditPhoneNumber };
   },
 });
 </script>
@@ -86,9 +100,11 @@ export default defineComponent({
               <img @click="displayEditLastName" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
               <EditLastName class="top-9" v-click-outside="hideEditLastName" v-if="editLastName" />
             </div>
-            <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
+            <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium relative">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Phone</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">{{ store.state.user.phoneNumber }}</p>
+              <img @click="displayEditPhoneNumber" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
+              <EditPhoneNumber class="top-9" v-click-outside="hideEditPhoneNumber" v-if="editPhoneNumber" />
             </div>
             <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Title</p>
