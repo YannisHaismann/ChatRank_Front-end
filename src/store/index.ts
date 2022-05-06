@@ -15,7 +15,7 @@ export default createStore({
       firstname: "",
       lastname: "",
       username: "",
-      type: "",
+      type: "", // 1 Viewer / 2 streamer
       sex: "",
       dateOfBirthday: "",
       phoneNumber: "",

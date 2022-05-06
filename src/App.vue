@@ -109,6 +109,45 @@ export default defineComponent({
         return false;
       }
     }
+
+    function parseJwt (token) {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload);
+    };
+
+    function updateUserInBdd(id, twitchInfos) {
+      return new Promise((resolve, reject) => {
+        $.ajax(`http://127.0.0.1:8000/apip/users/${id}`, {
+          type: "PATCH",
+          dataType: 'json',
+          contentType: "application/merge-patch+json; charset=utf-8",
+          data: JSON.stringify({
+            username: twitchInfos.display_name,
+            urlProfileImg: twitchInfos.profile_image_url,
+          }),
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
+          },
+          headers: {
+            "Client-ID": store.state.clientId,
+          },
+          success: (data) => {
+            console.log("path success")
+            resolve(data);
+          },
+          error: (error) => {
+            console.log("path error")
+            reject(error);
+          } 
+        })
+      });
+    }
+
     async function updateUserFromTwitchAndConnect() {
       let twitchInfos = await getTwitchInfos();
       twitchInfos = twitchInfos.data[0];
@@ -116,10 +155,18 @@ export default defineComponent({
       console.log(twitchInfos);
 
       // TODO
+      twitchInfos.display_name = "HoLaHAHA"
+      // let tokenDatas = parseJwt(localStorage.getItem('back_token'));
+      // let update = await updateUserInBdd(tokenDatas.id, twitchInfos);
+      // console.log("update");
+      // console.log(update);
 
+      //Changer par data from backend api
       store.state.user.username = twitchInfos.display_name;
       store.state.user.email = twitchInfos.email;
       store.state.user.profileImg = twitchInfos.profile_image_url;
+      store.state.user.type = 1;
+
       console.log(store.state.user);
     }
     
@@ -131,10 +178,10 @@ export default defineComponent({
         // Passer en mode connecté
       }
 
-      if(localStorage.getItem('twitch_access_token')){
-        console.log(localStorage.getItem('twitch_access_token'));
-        getTwitchUserInfos(localStorage.getItem('twitch_access_token'));
-      }
+      // if(localStorage.getItem('twitch_access_token')){
+      //   console.log(localStorage.getItem('twitch_access_token'));
+      //   getTwitchUserInfos(localStorage.getItem('twitch_access_token'));
+      // }
     })
   },
 })

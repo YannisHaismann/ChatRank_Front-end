@@ -21,16 +21,16 @@ export default defineComponent({
         request.value.abort();
       }
       request.value = $.ajax('http://127.0.0.1:8000/apip/users/find/users/streamer/' + name, {
-      type: "GET",
-      success: (data: any) => {
-        console.log("success");
-        console.log(data);
-        streamers.value = data;
-      },
-      error: () => {
-        streamers.value = null;
-      }
-    });
+        type: "GET",
+        success: (data: any) => {
+          console.log("success");
+          console.log(data);
+          streamers.value = data;
+        },
+        error: () => {
+          streamers.value = null;
+        }
+      });
     }
 
     const sendToProfile = (username: string) => {

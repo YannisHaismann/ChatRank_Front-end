@@ -4,6 +4,7 @@ import DashboardHome from "../views/dashboard/Home.vue";
 import DashboardStatistics from "../views/dashboard/Statistics.vue";
 import DashboardBot from "../views/dashboard/Bot.vue";
 import DashboardMyAccount from "../views/dashboard/MyAccount.vue";
+import MyAccount from "../views/MyAccount.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 import ProfileStreamer from "../views/ProfileStreamer.vue";
@@ -13,6 +14,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/account",
+    name: "MyAccount",
+    component: MyAccount,
   },
   {
     path: "/Profile/:nameStreamer",
