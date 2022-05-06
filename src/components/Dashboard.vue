@@ -6,6 +6,7 @@ import pencil from "@/assets/pencil.svg";
 import EditFirstName from "@/components/EditFirstName.vue";
 import EditLastName from "@/components/EditLastName.vue";
 import EditPhoneNumber from "@/components/EditPhoneNumber.vue";
+import EditPassword from "@/components/EditPassword.vue";
 import $ from "jquery";
 
 export default defineComponent({
@@ -15,6 +16,7 @@ export default defineComponent({
     EditFirstName,
     EditLastName,
     EditPhoneNumber,
+    EditPassword,
   },
   setup() {
     const store = useStore();
@@ -22,6 +24,7 @@ export default defineComponent({
     const editFirstName = ref(false);
     const editLastName = ref(false);
     const editPhoneNumber = ref(false);
+    const editPassword = ref(false);
 
     // const hideEditEmail = () => {
     //   if(editMail.value){
@@ -66,7 +69,18 @@ export default defineComponent({
       }, 10);
     }
 
-    return { store, pencil, editFirstName, editLastName, editPhoneNumber, hideEditLastName, displayEditLastName, displayEditFirstName, hideEditFirstName, hideEditPhoneNumber, displayEditPhoneNumber };
+    const hideEditPassword = () => {
+      if(editPassword.value){
+        editPassword.value = false;
+      }
+    }
+    const displayEditPassword = () => {
+      setTimeout(() => {
+        editPassword.value = true;
+      }, 10);
+    }
+
+    return { store, pencil, editFirstName, editLastName, editPhoneNumber, hideEditLastName, displayEditLastName, displayEditFirstName, hideEditFirstName, hideEditPhoneNumber, displayEditPhoneNumber, editPassword, hideEditPassword, displayEditPassword };
   },
 });
 </script>
@@ -110,9 +124,11 @@ export default defineComponent({
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Title</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">Not available</p>
             </div>
-            <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
+            <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium relative">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Password</p>
               <p class="tablet:-mt-1 text-8px tablet:text-base largeScreen:text-lg">*********</p>
+              <img @click="displayEditPassword" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
+              <EditPassword class="top-9" v-click-outside="hideEditPassword" v-if="editPassword" />
             </div>
           </div>
         </div>
