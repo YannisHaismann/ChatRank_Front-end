@@ -63,10 +63,10 @@ export default defineComponent({
           userInfos.value.username = data.display_name;
           userInfos.value.profileImg = data.profile_image_url;
           // A ENLEVER
-          userInfos.value.firstname = "AZ";
-          userInfos.value.lastname = "AZ";
-          userInfos.value.sex = "AZ";
-          userInfos.value.dateOfBirthday = new Date().toISOString().slice(0, 10);
+          // userInfos.value.firstname = "";
+          // userInfos.value.lastname = " ";
+          // userInfos.value.sex = " ";
+          // userInfos.value.dateOfBirthday = " ";
           console.log(userInfos.value);
         }
       })
@@ -87,7 +87,7 @@ export default defineComponent({
 
     const registerUserInBdd = () => {
       console.log(userInfos.value.password);
-      $.ajax('http://127.0.0.1:8000/apip/users/register', {
+      $.ajax(store.state.serverBackIp + '/users/register', {
         type: "POST",
         data: userInfos.value,
         success: (data: any) => {

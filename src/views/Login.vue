@@ -51,7 +51,7 @@ export default defineComponent({
           localStorage.setItem('back_token', data.token);
           localStorage.setItem('twitch_access_token', accessToken.value);
 
-          window.location.replace("https://localhost:8080/");
+          window.location.replace("/");
         }
       });
 
@@ -77,6 +77,10 @@ export default defineComponent({
           userInfos.value.username = data.display_name;
           userInfos.value.profileImg = data.profile_image_url;
           console.log(userInfos.value);
+        },
+        complete: (xhr: any) => {
+          console.log("code");
+          console.log(xhr.status)
         }
       })
     }

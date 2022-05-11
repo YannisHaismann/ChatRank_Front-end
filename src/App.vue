@@ -27,10 +27,10 @@ export default defineComponent({
 
     async function testBackToken () {
       return new Promise((resolve, reject) => {
-        $.ajax('http://127.0.0.1:8000/apip/users/find/pierre51', {
+        $.ajax(store.state.serverBackIp + '/users/find/pierre51', {
           type: "GET",
           beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + "localStorage.getItem('back_token')");
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
           },
           success: (data) => {
             resolve(data);
@@ -46,7 +46,7 @@ export default defineComponent({
 
     async function refreshToken () {
       return new Promise((resolve, reject) => {
-        $.ajax('http://127.0.0.1:8000/apip/token/refresh', {
+        $.ajax(store.state.serverBackIp + '/token/refresh', {
           type: "POST",
           dataType: 'json',
           contentType: "application/json; charset=utf-8",
@@ -121,14 +121,18 @@ export default defineComponent({
     };
 
     function updateUserInBdd(id, twitchInfos) {
+      console.log('id');
+      console.log(id);
+      console.log('twitchInfos')
+      console.log(twitchInfos)
       return new Promise((resolve, reject) => {
-        $.ajax(`http://127.0.0.1:8000/apip/users/${id}`, {
+        $.ajax(store.state.serverBackIp + `/users/${id}`, {
           type: "PATCH",
           dataType: 'json',
-          contentType: "application/merge-patch+json; charset=utf-8",
+          contentType: "application/merge-patch+json; charset=UTF-8;",
           data: JSON.stringify({
-            username: twitchInfos.display_name,
-            urlProfileImg: twitchInfos.profile_image_url,
+            "username": "hohohohohoho",
+            // urlProfileImg: twitchInfos.profile_image_url,
           }),
           beforeSend: function(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
@@ -156,10 +160,10 @@ export default defineComponent({
 
       // TODO
       twitchInfos.display_name = "HoLaHAHA"
-      // let tokenDatas = parseJwt(localStorage.getItem('back_token'));
-      // let update = await updateUserInBdd(tokenDatas.id, twitchInfos);
-      // console.log("update");
-      // console.log(update);
+      let tokenDatas = parseJwt(localStorage.getItem('back_token'));
+      let update = await updateUserInBdd(tokenDatas.id, twitchInfos);
+      console.log("update");
+      console.log(update);
 
       //Changer par data from backend api
       store.state.user.username = twitchInfos.display_name;
