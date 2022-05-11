@@ -118,7 +118,7 @@ export default defineComponent({
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Phone</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">{{ store.state.user.phoneNumber }}</p>
               <img @click="displayEditPhoneNumber" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
-              <EditPhoneNumber class="top-9" v-click-outside="hideEditPhoneNumber" v-if="editPhoneNumber" />
+              <EditPhoneNumber @close="hideEditPhoneNumber" class="top-9" v-click-outside="hideEditPhoneNumber" v-if="editPhoneNumber" />
             </div>
             <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Title</p>

@@ -1,28 +1,58 @@
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from "vue";
+import { defineComponent, ref, watchEffect, onMounted } from "vue";
 import { useStore } from "vuex";
+import $ from "jquery";
 
 export default defineComponent({
   name: "EditPhoneNumber",
   props: {  },
   components: { },
-  setup() {
+  setup(props, ctx) {
     const phoneNumberValue = ref();
     const store = useStore();
     const focusBool = ref(false);
     const bool = ref(false);
 
     const validPhoneNumber = () => {
-      // Modif user
-      // If good just reload page or send emit event to change firstname in myaccount
-      // Else bool = true
-      bool.value = true;
+      let regexPhoneNumber = /(06|07)[0-9]{8}$/;
+      if(!phoneNumberValue.value.match(regexPhoneNumber)){
+        bool.value = true;
+        return;
+      }
+      console.log(store.state.tokenDatas);
+      $.ajax(store.state.serverBackIp + `/users/${store.state.tokenDatas.id}`, {
+          type: "PATCH",
+          dataType: 'json',
+          contentType: "application/merge-patch+json; charset=UTF-8;",
+          data: JSON.stringify({
+            "phoneNumber": phoneNumberValue.value,
+          }),
+          beforeSend: function(xhr: any) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
+          },
+          headers: {
+            "Client-ID": store.state.clientId,
+          },
+          success: (data: any) => {
+            store.state.user.phoneNumber = phoneNumberValue.value;
+            ctx.emit('close');
+          },
+          error: (error: any) => {
+            console.log("path error")
+            console.log(error);
+            bool.value = true;
+          } 
+        })
     }
 
     watchEffect(() => {
-      store.state.user.firstName;
-      phoneNumberValue.value = store.state.user.firstName;
-      console.log(phoneNumberValue.value);
+      if(store.state.user.phoneNumber){
+        phoneNumberValue.value = store.state.user.phoneNumber;
+      }
+    })
+
+    onMounted(() => {
+      phoneNumberValue.value = store.state.user.phoneNumber;
     })
 
     return { phoneNumberValue, focusBool, validPhoneNumber, bool };
