@@ -10,6 +10,7 @@ export default createStore({
     lolRanksColor: ['#6A6566', '#8A665C', '#64777B', '#DFCB85', '#6CBB84', '#32368D', '#A783C2', '#FE6669', 'white'],
     clientId: "1rsnaxngmvagb1twtd5rdo4d90xepb",
     serverBackIp: "http://localhost/public/apip",
+    tokenDatas: null,
     user: {
       email: "",
       password: "",
@@ -23,7 +24,11 @@ export default createStore({
       profileImg: "",
     }
   },
-  mutations: {},
+  mutations: {
+    setTokenDatas(state, data) {
+      state.tokenDatas = data;
+    }
+  },
   actions: {},
   modules: {},
 });

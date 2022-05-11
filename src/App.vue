@@ -150,29 +150,61 @@ export default defineComponent({
       });
     }
 
+    function getUserInformations() {
+      return new Promise((resolve, reject) => {
+        $.ajax(store.state.serverBackIp + `/users/${store.state.tokenDatas.id}`, {
+          type: "GET",
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
+          },
+          headers: {
+            "Client-ID": store.state.clientId,
+          },
+          success: (data) => {
+            console.log("get user success")
+            resolve(data);
+          },
+          error: (error) => {
+            console.log("get user error")
+            reject(error);
+          } 
+        })
+      });
+    }
+
     async function updateUserFromTwitchAndConnect() {
       let twitchInfos = await getTwitchInfos();
       twitchInfos = twitchInfos.data[0];
 
-      let tokenDatas = parseJwt(localStorage.getItem('back_token'));
-      let update = await updateUserInBdd(tokenDatas.id, twitchInfos);
+      store.commit('setTokenDatas', parseJwt(localStorage.getItem('back_token')));
+      let update = await updateUserInBdd(store.state.tokenDatas.id, twitchInfos);
+
+      let userInformations = await getUserInformations();
+
+      console.log("userInformations");
+      console.log(userInformations);
 
       //Changer par data from backend api
-      store.state.user.username = twitchInfos.display_name;
-      store.state.user.email = twitchInfos.email;
-      store.state.user.profileImg = twitchInfos.profile_image_url;
-      store.state.user.type = 1;
-      store.state.user.firstname = "firstname";
-      store.state.user.lastname = "lastname";
-      store.state.user.sex = "sex";
-      store.state.user.dateOfBirthday = "dateOfBirthday";
-      store.state.user.phoneNumber = "0671289923";
+      store.state.user.username = userInformations.username;
+      store.state.user.email = userInformations.email;
+      store.state.user.profileImg = userInformations.urlProfileImg;
+      if(userInformations.roles.length > 1){
+        store.state.user.type = "streamer";
+      }else{
+        store.state.user.type = "viewer";
+      }
+      store.state.user.firstname = userInformations.firstname;
+      store.state.user.lastname = userInformations.lastname;
+      store.state.user.sex = userInformations.type;
+      store.state.user.dateOfBirthday = userInformations.dateOfBirthday;
+      store.state.user.phoneNumber = userInformations.phoneNumber;
 
       console.log(store.state.user);
     }
     
     onMounted(() => {
       if(updateTokensAndCheckIfLogin()){
+        console.log("bien login potow");
         updateUserFromTwitchAndConnect();
 
         // Update informations in bdd from twitch (username...)
