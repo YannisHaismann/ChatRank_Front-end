@@ -121,18 +121,16 @@ export default defineComponent({
     };
 
     function updateUserInBdd(id, twitchInfos) {
-      console.log('id');
-      console.log(id);
-      console.log('twitchInfos')
-      console.log(twitchInfos)
+      console.log("twitchInfos");
+      console.log(twitchInfos);
       return new Promise((resolve, reject) => {
         $.ajax(store.state.serverBackIp + `/users/${id}`, {
           type: "PATCH",
           dataType: 'json',
           contentType: "application/merge-patch+json; charset=UTF-8;",
           data: JSON.stringify({
-            "username": "hohohohohoho",
-            // urlProfileImg: twitchInfos.profile_image_url,
+            "username": twitchInfos.display_name,
+            "urlProfileImg": twitchInfos.profile_image_url,
           }),
           beforeSend: function(xhr) {
             xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
@@ -155,15 +153,9 @@ export default defineComponent({
     async function updateUserFromTwitchAndConnect() {
       let twitchInfos = await getTwitchInfos();
       twitchInfos = twitchInfos.data[0];
-      console.log("Informations venant de twitch :");
-      console.log(twitchInfos);
 
-      // TODO
-      twitchInfos.display_name = "HoLaHAHA"
       let tokenDatas = parseJwt(localStorage.getItem('back_token'));
       let update = await updateUserInBdd(tokenDatas.id, twitchInfos);
-      console.log("update");
-      console.log(update);
 
       //Changer par data from backend api
       store.state.user.username = twitchInfos.display_name;
