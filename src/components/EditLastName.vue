@@ -1,28 +1,53 @@
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from "vue";
+import { defineComponent, onMounted, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
+import $ from "jquery";
 
 export default defineComponent({
   name: "EditLastName",
   props: {  },
   components: { },
-  setup() {
+  setup(props, ctx) {
     const lastNameValue = ref();
     const store = useStore();
     const focusBool = ref(false);
     const bool = ref(false);
 
     const validLastName = () => {
-      // Modif user
-      // If good just reload page or send emit event to change lastname in myaccount
-      // Else bool = true
-      bool.value = true;
+      console.log(store.state.tokenDatas);
+      $.ajax(store.state.serverBackIp + `/users/${store.state.tokenDatas.id}`, {
+          type: "PATCH",
+          dataType: 'json',
+          contentType: "application/merge-patch+json; charset=UTF-8;",
+          data: JSON.stringify({
+            "lastname": lastNameValue.value,
+          }),
+          beforeSend: function(xhr: any) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
+          },
+          headers: {
+            "Client-ID": store.state.clientId,
+          },
+          success: (data: any) => {
+            store.state.user.lastname = lastNameValue.value;
+            ctx.emit('close');
+          },
+          error: (error: any) => {
+            console.log("path error")
+            console.log(error);
+            bool.value = true;
+          } 
+        })
     }
 
     watchEffect(() => {
-      store.state.user.lastName;
-      lastNameValue.value = store.state.user.lastName;
-      console.log(lastNameValue.value);
+      if(store.state.user.lastname){
+        lastNameValue.value = store.state.user.lastname;
+      }
+    })
+
+    onMounted(() => {
+      lastNameValue.value = store.state.user.lastname;
     })
 
     return { lastNameValue, focusBool, validLastName, bool };

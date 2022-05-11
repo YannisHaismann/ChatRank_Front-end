@@ -7,7 +7,7 @@ export default defineComponent({
   name: "EditFirstName",
   props: {  },
   components: { },
-  setup() {
+  setup(props, ctx) {
     const firstNameValue = ref();
     const store = useStore();
     const focusBool = ref(false);
@@ -30,6 +30,7 @@ export default defineComponent({
           },
           success: (data: any) => {
             store.state.user.firstname = firstNameValue.value;
+            ctx.emit('close');
           },
           error: (error: any) => {
             console.log("path error")
@@ -42,12 +43,10 @@ export default defineComponent({
     watchEffect(() => {
       if(store.state.user.firstName){
         firstNameValue.value = store.state.user.firstname;
-        console.log(firstNameValue.value);
       }
     })
 
     onMounted(() => {
-      console.log(store.state.user.firstName)
       firstNameValue.value = store.state.user.firstname;
     })
 

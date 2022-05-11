@@ -106,13 +106,13 @@ export default defineComponent({
               <p class="text-6px tablet:text-10px largeScreen:text-12px">First name</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">{{ store.state.user.firstname }}</p>
               <img @click="displayEditFirstName" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
-              <EditFirstName class="top-9" v-click-outside="hideEditFirstName" v-if="editFirstName" />
+              <EditFirstName @close="hideEditFirstName" class="top-9" v-click-outside="hideEditFirstName" v-if="editFirstName" />
             </div>
             <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium relative">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Last name</p>
               <p class="-mt-1 tablet:-mt-2 text-8px tablet:text-base largeScreen:text-lg">{{ store.state.user.lastname }}</p>
               <img @click="displayEditLastName" class="w-6 h-6 absolute -right-10 top-2 cursor-pointer" :src="pencil" alt="">
-              <EditLastName class="top-9" v-click-outside="hideEditLastName" v-if="editLastName" />
+              <EditLastName @close="hideEditLastName" class="top-9" v-click-outside="hideEditLastName" v-if="editLastName" />
             </div>
             <div class="text-white w-fit tablet:w-fit largeScreen:w-fit font-maven-medium relative">
               <p class="text-6px tablet:text-10px largeScreen:text-12px">Phone</p>
