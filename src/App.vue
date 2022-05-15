@@ -19,7 +19,6 @@ export default defineComponent({
         },
         success: (data) => {
           data = data.data[0];
-          console.log(data);
           store.state.user.username = data.display_name;
         }
       })
@@ -36,8 +35,6 @@ export default defineComponent({
             resolve(data);
           },
           error: (error) => {
-            console.log("Erreur : ");
-            console.log(error.responseJSON);
             reject(1);
           }
         })
@@ -54,11 +51,9 @@ export default defineComponent({
             refresh_token: localStorage.getItem('back_refresh_token'),
           }),
           success: (data) => {
-            console.log("success");
             resolve(data);
           },
           error: (error) => {
-            console.log("error");
             reject(error);
           }
         })
@@ -121,8 +116,6 @@ export default defineComponent({
     };
 
     function updateUserInBdd(id, twitchInfos) {
-      console.log("twitchInfos");
-      console.log(twitchInfos);
       return new Promise((resolve, reject) => {
         $.ajax(store.state.serverBackIp + `/users/${id}`, {
           type: "PATCH",
@@ -139,11 +132,9 @@ export default defineComponent({
             "Client-ID": store.state.clientId,
           },
           success: (data) => {
-            console.log("path success")
             resolve(data);
           },
           error: (error) => {
-            console.log("path error")
             reject(error);
           } 
         })
@@ -151,8 +142,6 @@ export default defineComponent({
     }
 
     function getUserInformations() {
-      console.log("store.state.tokenDatas");
-      console.log(store.state.tokenDatas);
       return new Promise((resolve, reject) => {
         $.ajax(store.state.serverBackIp + `/users/${store.state.tokenDatas.id}`, {
           type: "GET",
@@ -163,11 +152,9 @@ export default defineComponent({
             "Client-ID": store.state.clientId,
           },
           success: (data) => {
-            console.log("get user success")
             resolve(data);
           },
           error: (error) => {
-            console.log("get user error")
             reject(error);
           } 
         })
@@ -183,39 +170,32 @@ export default defineComponent({
 
       let userInformations = await getUserInformations();
 
-      console.log("userInformations");
-      console.log(userInformations);
-
       //Changer par data from backend api
       store.state.user.username = userInformations.username;
       store.state.user.email = userInformations.email;
       store.state.user.profileImg = userInformations.urlProfileImg;
-      if(userInformations.roles.length > 1){
+
+      if(userInformations.type == "/public/apip/types/2"){
         store.state.user.type = 2;
       }else{
         store.state.user.type = 1;
       }
-      store.state.user.type = 1;
+      // store.state.user.type = 1;
       store.state.user.firstname = userInformations.firstname;
       store.state.user.lastname = userInformations.lastname;
       store.state.user.sex = userInformations.type;
       store.state.user.dateOfBirthday = userInformations.dateOfBirthday;
       store.state.user.phoneNumber = userInformations.phoneNumber;
-
-      console.log(store.state.user);
     }
     
     onMounted(() => {
       if(updateTokensAndCheckIfLogin()){
-        console.log("bien login potow");
         updateUserFromTwitchAndConnect();
 
         // Update informations in bdd from twitch (username...)
         // Passer en mode connecté
       }
-      console.log(store.state.user);
       // if(localStorage.getItem('twitch_access_token')){
-      //   console.log(localStorage.getItem('twitch_access_token'));
       //   getTwitchUserInfos(localStorage.getItem('twitch_access_token'));
       // }
     })

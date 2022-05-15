@@ -111,6 +111,8 @@ module.exports = {
   },
   variants: {
     scrollSnapType: ['responsive'],
+    borderWidth: ['first', 'last'],
+    borderStyle: ['first', 'last'],
   },
   plugins: [require('tailwindcss-scroll-snap')],
 };

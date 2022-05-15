@@ -22,6 +22,7 @@ export default defineComponent({
     <div class="w-2/5 h-6 tablet:h-9 relative rounded-2xl">
       <input
         type="text"
+        @keyup="$emit('changeValue', $event)"
         @focus="setFocus(true)"
         @blur="setFocus(false)"
         class="bg-darkB absolute top-0 w-full outline-none rounded-2xl border-2 border-darkBorder focus:border-mainA m-auto h-full text-white placeholder-white px-5 caret-white font-maven-medium text-8px tablet:text-14px"

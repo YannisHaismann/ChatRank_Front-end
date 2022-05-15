@@ -1,16 +1,19 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted, watchEffect } from "vue";
 import moreBtn from "@/assets/more-btn.svg";
 import ActionsOnViewer from "./ActionsOnViewer.vue"
 import $ from "jquery";
 import { useStore } from "vuex";
 import SearchViewer from "@/components/SearchViewer.vue";
+
 export default defineComponent({
   name: "list-viewer",
+  props: { viewers: Object },
   components: { ActionsOnViewer, SearchViewer },
-  setup() {
+  setup(props) {
     const boolActions = ref(false);
     const store = useStore();
+    const useViewers = ref();
 
     const getDevice = () => {
       if (($(document).height() > store.state.tablet && window.innerHeight > window.innerWidth || $(document).width() > store.state.desktop)) {
@@ -21,6 +24,12 @@ export default defineComponent({
         return "phone";
       }
     };
+
+    const displayUpdateDate = (date: string) => {
+      let removeHourReg = /T.*$/;
+      let finalDate = date.replace(removeHourReg, '');
+      return finalDate;
+    }
 
     const showModuleActions = (event: Event) => {
       if(event.target){
@@ -44,14 +53,25 @@ export default defineComponent({
       }
     }
 
-    return { moreBtn, showModuleActions, boolActions };
+    const updateUseViewers = (value: any) => {
+      useViewers.value = props.viewers;
+      useViewers.value = useViewers.value.filter((el: any) => {
+        return el.username.startsWith(value);
+      });
+    }
+
+    watchEffect(() => {
+      useViewers.value = props.viewers;
+    })
+
+    return { moreBtn, showModuleActions, boolActions, useViewers, displayUpdateDate, updateUseViewers };
   },
 });
 </script>
 
 <template>
   <div class="tablet:h-1/2 h-1/3 flex-shrink-0 flex flex-col" id="ListViewers">
-    <search-viewer />
+    <search-viewer @changeValue="updateUseViewers($event.target.value)" />
     <table
       class="text-white block border-2 border-darkBorder h-full w-full bg-darkC rounded-2xl mt-2 tablet:mt-3 font-maven-medium"
     >
@@ -59,20 +79,22 @@ export default defineComponent({
         <tr class="absolute left-5 top-1/2 transform -translate-y-1/2">
           <td class="w-10 tablet:w-16"></td>
           <td class="w-28 tablet:w-52">Username</td>
-          <td class="w-28 tablet:w-52">Last connection</td>
+          <td class="w-28 tablet:w-52">Last update</td>
           <td class="w-28 tablet:w-52">Type</td>
         </tr>
       </thead>
-      <tbody
-        class="w-full text-6px tablet:text-14px h-6 tablet:h-12 block relative border-t-2 border-b-2 border-darkBorder"
+      <div
+        v-for="(viewer, index) in useViewers" :key="viewer.id"
+        :class="{'border-t-2': index == 0}"
+        class="w-full text-6px tablet:text-14px h-6 tablet:h-12 block relative border-b-2 border-darkBorder"
       >
-        <tr class="absolute left-5 top-1/2 transform -translate-y-1/2">
+        <tr class="absolute flex left-5 top-1/2 transform -translate-y-1/2">
           <td class="w-10 tablet:w-16">
-            <img class="w-4 tablet:w-9" src="./../assets/pdp-template.png" />
+            <img class="w-4 tablet:w-9" :src="viewer.url_profile_img" />
           </td>
-          <td class="w-28 tablet:w-52">yesmanGaming</td>
-          <td class="w-28 tablet:w-52">21/09/21</td>
-          <td class="w-28 tablet:w-52">Viewer</td>
+          <td class="w-28 tablet:w-52 block mt-1.5">{{ viewer.username }}</td>
+          <td class="w-28 tablet:w-52 block mt-1.5">{{ displayUpdateDate(viewer.date_of_update) }}</td>
+          <td class="w-28 tablet:w-52 block mt-1.5">{{ viewer.type.name }}</td>
         </tr>
         <img
           @click="showModuleActions($event)"
@@ -80,7 +102,7 @@ export default defineComponent({
           :src="moreBtn"
         />
         <actionsOnViewer v-show="boolActions" />
-      </tbody>
+      </div>
     </table>
   </div>
 </template>
