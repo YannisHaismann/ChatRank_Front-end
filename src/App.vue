@@ -151,6 +151,8 @@ export default defineComponent({
     }
 
     function getUserInformations() {
+      console.log("store.state.tokenDatas");
+      console.log(store.state.tokenDatas);
       return new Promise((resolve, reject) => {
         $.ajax(store.state.serverBackIp + `/users/${store.state.tokenDatas.id}`, {
           type: "GET",
@@ -189,10 +191,11 @@ export default defineComponent({
       store.state.user.email = userInformations.email;
       store.state.user.profileImg = userInformations.urlProfileImg;
       if(userInformations.roles.length > 1){
-        store.state.user.type = "streamer";
+        store.state.user.type = 2;
       }else{
-        store.state.user.type = "viewer";
+        store.state.user.type = 1;
       }
+      store.state.user.type = 1;
       store.state.user.firstname = userInformations.firstname;
       store.state.user.lastname = userInformations.lastname;
       store.state.user.sex = userInformations.type;

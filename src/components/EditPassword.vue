@@ -1,12 +1,13 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from "vue";
 import { useStore } from "vuex";
+import $ from "jquery";
 
 export default defineComponent({
   name: "EditPassword",
   props: {  },
   components: { },
-  setup() {
+  setup(props, ctx) {
     const actualPassword = ref();
     const newPassword = ref();
     const repeatNewPassword = ref();
@@ -18,11 +19,52 @@ export default defineComponent({
     const focusBoolRepeatNewPassword = ref(false);
     const boolRepeatNewPassword = ref(false);
 
+    const changePasswordInBdd = () => {
+      console.log(newPassword.value);
+      $.ajax(store.state.serverBackIp + `/users/password`, {
+          type: "POST",
+          data: {
+            password: newPassword.value,
+            id: store.state.tokenDatas.id,
+          },
+          beforeSend: function(xhr: any) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('back_token'));
+          },
+          headers: {
+            "Client-ID": store.state.clientId,
+          },
+          success: (data: any) => {
+            ctx.emit('close');
+          },
+          error: (error: any) => {
+            boolNewPassword.value = true;
+            boolRepeatNewPassword.value = true;
+          } 
+        })
+    }
+
+    const checkActualPassword = () => {
+      $.ajax(store.state.serverBackIp + '/login', {
+        type: "POST",
+        dataType: 'json',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+          username: store.state.user.email,
+          password: actualPassword.value,
+        }),
+        success: (data: any) => {
+          if(newPassword.value == repeatNewPassword.value){
+            changePasswordInBdd();
+          }
+        },
+        error: () => {
+          boolPassword.value = true;
+        }
+      });
+    }
+
     const validPassword = () => {
-      // Modif user
-      // If good just reload page or send emit event to change firstname in myaccount
-      // Else bool = true
-      // bool.value = true;
+      checkActualPassword();
     }
 
     return { actualPassword, newPassword, focusBoolPassword, validPassword, focusBoolNewPassword, boolNewPassword, boolPassword, repeatNewPassword, focusBoolRepeatNewPassword, boolRepeatNewPassword };

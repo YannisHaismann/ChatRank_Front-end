@@ -34,7 +34,7 @@ export default defineComponent({
       console.log(userInfos.value.email);
       console.log(userInfos.value.password);
 
-      $.ajax('http://127.0.0.1:8000/apip/login', {
+      $.ajax(store.state.serverBackIp + '/login', {
         type: "POST",
         dataType: 'json',
         contentType: "application/json; charset=utf-8",
