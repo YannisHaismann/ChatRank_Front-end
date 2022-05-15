@@ -52,6 +52,9 @@ export default defineComponent({
           localStorage.setItem('twitch_access_token', accessToken.value);
 
           window.location.replace("/");
+        },
+        error : () => {
+          errorBool.value = true;
         }
       });
 
